@@ -37,6 +37,10 @@ jobs:
       - run: npm run fetch:sidecars -- --target darwin-x64,darwin-arm64
       - run: node scripts/verify-sidecar-binaries.js prebuild:mac
       - run: npx electron-builder --mac --publish never
+        env:
+          # Roary Pet fork ships unsigned (no Apple Developer cert). Disable
+          # signing auto-discovery so the build doesn't fail looking for a cert.
+          CSC_IDENTITY_AUTODISCOVERY: "false"
       - uses: actions/upload-artifact@v4
         with:
           name: mac-installer
@@ -64,13 +68,14 @@ jobs:
             dist/latest-linux.yml
 
   release:
-    if: startsWith(github.ref, 'refs/tags/v')
+    # Wait for all builds, but only require macOS to succeed so a Windows/Linux
+    # failure never blocks the macOS release. Whatever artifacts exist are attached.
     needs: [build-windows, build-mac, build-linux]
+    if: always() && startsWith(github.ref, 'refs/tags/v') && needs.build-mac.result == 'success'
     runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v4
       - uses: actions/download-artifact@v4
         with:
           path: artifacts
@@ -78,6 +83,6 @@ jobs:
       - uses: softprops/action-gh-release@v2
         with:
           files: artifacts/*
-          body_path: docs/releases/release-${{ github.ref_name }}.md
-          draft: true
+          generate_release_notes: true
+          draft: false
           prerelease: ${{ contains(github.ref_name, '-') }}
