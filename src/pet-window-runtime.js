@@ -473,7 +473,7 @@ function createPetWindowRuntime(options = {}) {
       });
       renderWin.on("unresponsive", () => {
         if (isQuitting()) return;
-        console.warn("Clawd: renderer unresponsive — reloading");
+        console.warn("Roary: renderer unresponsive — reloading");
         reloadWindowWebContents(renderWin);
       });
     }
@@ -487,7 +487,7 @@ function createPetWindowRuntime(options = {}) {
         try {
           flushRuntimeStateToPrefs();
         } catch (err) {
-          console.warn("Clawd: failed to persist prefs during Windows session end:", err && err.message);
+          console.warn("Roary: failed to persist prefs during Windows session end:", err && err.message);
         }
       };
       renderWin.on("query-session-end", flushForSessionEnd);

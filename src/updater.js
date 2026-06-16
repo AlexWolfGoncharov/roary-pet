@@ -4,7 +4,7 @@ const path = require("path");
 const fs = require("fs");
 const electron = require("electron");
 
-const RELEASES_LATEST_URL = "https://github.com/rullerzhou-afk/clawd-on-desk/releases/latest";
+const RELEASES_LATEST_URL = "https://github.com/AlexWolfGoncharov/roary-pet/releases/latest";
 
 function makeTranslate(ctx) {
   return (key, fallback) => {
@@ -477,9 +477,9 @@ function initUpdater(ctx, deps = {}) {
     return new Promise((resolve, reject) => {
       const req = httpsGet({
         hostname: "github.com",
-        path: "/rullerzhou-afk/clawd-on-desk/releases/latest",
+        path: "/AlexWolfGoncharov/roary-pet/releases/latest",
         headers: {
-          "User-Agent": "Clawd-on-Desk",
+          "User-Agent": "Roary-Pet",
           Accept: "text/html,*/*",
         },
       }, (res) => {
@@ -510,11 +510,11 @@ function initUpdater(ctx, deps = {}) {
 
   function fetchLatestReleaseFromApi() {
     return new Promise((resolve, reject) => {
-      const headers = { "User-Agent": "Clawd-on-Desk" };
+      const headers = { "User-Agent": "Roary-Pet" };
       if (lastReleaseEtag) headers["If-None-Match"] = lastReleaseEtag;
       const req = httpsGet({
         hostname: "api.github.com",
-        path: "/repos/rullerzhou-afk/clawd-on-desk/releases/latest",
+        path: "/repos/AlexWolfGoncharov/roary-pet/releases/latest",
         headers,
       }, (res) => {
         // 304 Not Modified — drain and serve the cached release.

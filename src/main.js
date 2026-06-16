@@ -24,7 +24,7 @@ const _xwaylandRelaunch = planXWaylandRelaunch({
 });
 if (_xwaylandRelaunch) {
   console.log(
-    "Clawd: Linux — relaunching under XWayland (--ozone-platform=x11) " +
+    "Roary: Linux — relaunching under XWayland (--ozone-platform=x11) " +
     "(issue #441; override with CLAWD_OZONE_PLATFORM=wayland|x11|auto)"
   );
   process.env.CLAWD_OZONE_RELAUNCHED = "1";
@@ -53,7 +53,7 @@ if (_xwaylandRelaunch) {
   }
   if (_xwaylandChild && typeof _xwaylandChild.on === "function") {
     _xwaylandChild.on("error", (err) => {
-      console.error("Clawd: XWayland relaunch spawn error:", err && err.message ? err.message : err);
+      console.error("Roary: XWayland relaunch spawn error:", err && err.message ? err.message : err);
     });
   }
   if (_xwaylandChild && typeof _xwaylandChild.pid === "number") {
@@ -67,7 +67,7 @@ if (_xwaylandRelaunch) {
   // listener above also prevents async exec failures (ENOENT/EACCES) from
   // crashing this fallback path.
   delete process.env.CLAWD_OZONE_RELAUNCHED;
-  console.error("Clawd: XWayland relaunch failed; continuing under native Wayland (issue #441).");
+  console.error("Roary: XWayland relaunch failed; continuing under native Wayland (issue #441).");
 }
 
 const { clampTextScale, scaleWidth, scaleHeight, resolveTextScaleForKey } = require("./text-scale");
@@ -155,7 +155,7 @@ if (isWin) {
     const user32 = koffi.load("user32.dll");
     _allowSetForeground = user32.func("bool __stdcall AllowSetForegroundWindow(int dwProcessId)");
   } catch (err) {
-    console.warn("Clawd: koffi/AllowSetForegroundWindow not available:", err.message);
+    console.warn("Roary: koffi/AllowSetForegroundWindow not available:", err.message);
   }
 }
 
@@ -191,7 +191,7 @@ if (isWin) {
     }
   } catch (err) {
     // Best-effort — mojibake in dev console is annoying but not fatal.
-    console.warn("Clawd: SetConsoleOutputCP(65001) failed:", err && err.message);
+    console.warn("Roary: SetConsoleOutputCP(65001) failed:", err && err.message);
   }
 }
 
@@ -341,7 +341,7 @@ const _settingsController = createSettingsController({
     repairLocalServer: () => _server && typeof _server.repairRuntimeStatus === "function"
       ? _server.repairRuntimeStatus()
       : false,
-    restartClawd: _restartClawdNow,
+    restartRoary: _restartClawdNow,
     clearSessionsByAgent: (id) => agentRuntime ? agentRuntime.clearSessionsByAgent(id) : 0,
     dismissPermissionsByAgent: (id, options) => agentRuntime ? agentRuntime.dismissPermissionsByAgent(id, options) : 0,
     resizePet: _deferredResizePet,
@@ -406,14 +406,14 @@ function hydrateSystemBackedSettings() {
   try {
     systemValue = !!_readSystemOpenAtLogin();
   } catch (err) {
-    console.warn("Clawd: failed to read system openAtLogin during hydration:", err && err.message);
+    console.warn("Roary: failed to read system openAtLogin during hydration:", err && err.message);
   }
   const result = _settingsController.hydrate({
     openAtLogin: systemValue,
     openAtLoginHydrated: true,
   });
   if (result && result.status === "error") {
-    console.warn("Clawd: openAtLogin hydration failed:", result.message);
+    console.warn("Roary: openAtLogin hydration failed:", result.message);
   }
 }
 
@@ -598,7 +598,7 @@ if (codexPetMain.summaryHasActiveOrphan(_startupCodexPetSyncSummary, _requestedT
     themeOverrides: nextOverrides,
   });
   if (result && result.status === "error") {
-    console.warn("Clawd: Codex Pet active theme fallback hydrate failed:", result.message);
+    console.warn("Roary: Codex Pet active theme fallback hydrate failed:", result.message);
   }
   _startupCodexPetSyncSummary = codexPetMain.mergeSyncSummaries(
     _startupCodexPetSyncSummary,
@@ -622,7 +622,7 @@ if (_loadedStartupTheme._id !== _requestedThemeId || _loadedStartupTheme._varian
     themeVariant: nextVariantMap,
   });
   if (result && result.status === "error") {
-    console.warn("Clawd: theme hydrate after fallback failed:", result.message);
+    console.warn("Roary: theme hydrate after fallback failed:", result.message);
   }
 }
 
@@ -835,14 +835,14 @@ function applyTextScaleNow() {
       settingsWindowRuntime.applyTextScaleToWindow();
     }
   } catch (err) {
-    console.warn("Clawd: settings window text scale failed:", err && err.message);
+    console.warn("Roary: settings window text scale failed:", err && err.message);
   }
   try {
     if (_dashboard && typeof _dashboard.applyTextScaleToWindow === "function") {
       _dashboard.applyTextScaleToWindow();
     }
   } catch (err) {
-    console.warn("Clawd: dashboard text scale failed:", err && err.message);
+    console.warn("Roary: dashboard text scale failed:", err && err.message);
   }
   repositionAnchoredFloatingSurfaces();
 }
@@ -1430,7 +1430,7 @@ function reconcilePowerSaveBlocker() {
       powerSaveBlockerId = null;
     }
   } catch (err) {
-    console.warn("Clawd: reconcilePowerSaveBlocker failed:", err);
+    console.warn("Roary: reconcilePowerSaveBlocker failed:", err);
   }
 }
 function releasePowerSaveBlocker() {
@@ -2330,7 +2330,7 @@ function hardwareBuddyLog(msg) {
   if (sessionDebugLog) {
     sessionLog(line);
   } else {
-    console.log(`Clawd: ${line}`);
+    console.log(`Roary: ${line}`);
   }
 }
 
@@ -2372,7 +2372,7 @@ function broadcastHardwareBuddyStatus(status) {
       }
     }
   } catch (err) {
-    console.warn("Clawd: Hardware Buddy status broadcast failed:", err && err.message);
+    console.warn("Roary: Hardware Buddy status broadcast failed:", err && err.message);
   }
 }
 
@@ -2556,7 +2556,7 @@ unsubscribeHardwareBuddySettings = _settingsController.subscribeKey("hardwareBud
   try {
     hardwareBuddyAdapter.applySettingsChange();
   } catch (err) {
-    console.warn("Clawd: failed to apply Hardware Buddy settings:", err && err.message);
+    console.warn("Roary: failed to apply Hardware Buddy settings:", err && err.message);
     hardwareBuddyLog(`settings apply failed: ${err && err.message ? err.message : err}`);
   }
 });
@@ -2693,7 +2693,7 @@ const _menuCtx = {
   set bubbleFollowPet(v) { _settingsController.applyUpdate("bubbleFollowPet", v); },
   get hideBubbles() { return getAllBubblesHidden(); },
   set hideBubbles(v) { _settingsController.applyCommand("setAllBubblesHidden", { hidden: !!v }).catch((err) => {
-    console.warn("Clawd: setAllBubblesHidden failed:", err && err.message);
+    console.warn("Roary: setAllBubblesHidden failed:", err && err.message);
   }); },
   get autoApproveAllPermissions() { return _settingsController.get("autoApproveAllPermissions") === true; },
   // Route through the gated command. The menu shows its own native danger
@@ -2702,7 +2702,7 @@ const _menuCtx = {
   // gated so the confirm dialog is a real boundary, not UI-only.
   set autoApproveAllPermissions(v) {
     _settingsController.applyCommand("setAutoApproveAll", { enabled: !!v, confirmed: true }).catch((err) => {
-      console.warn("Clawd: setAutoApproveAll failed:", err && err.message);
+      console.warn("Roary: setAutoApproveAll failed:", err && err.message);
     });
   },
   get soundMuted() { return soundMuted; },
@@ -3016,7 +3016,7 @@ const { createRemoteSshRuntime } = require("./remote-ssh-runtime");
 const { registerRemoteSshIpc } = require("./remote-ssh-ipc");
 const _remoteSshRuntime = createRemoteSshRuntime({
   getHookServerPort: () => getHookServerPort(),
-  log: (...args) => console.warn("Clawd remote-ssh:", ...args),
+  log: (...args) => console.warn("Roary remote-ssh:", ...args),
 });
 const _remoteSshIpc = registerRemoteSshIpc({
   ipcMain,
@@ -3126,11 +3126,11 @@ registerSessionIpc({
     if (result && typeof result.then === "function") {
       result
         .then((r) => {
-          if (r && r.status === "error") console.warn("Clawd: failed to pin Session HUD:", r.message);
+          if (r && r.status === "error") console.warn("Roary: failed to pin Session HUD:", r.message);
         })
-        .catch((err) => console.warn("Clawd: failed to pin Session HUD:", err && err.message));
+        .catch((err) => console.warn("Roary: failed to pin Session HUD:", err && err.message));
     } else if (result && result.status === "error") {
-      console.warn("Clawd: failed to pin Session HUD:", result.message);
+      console.warn("Roary: failed to pin Session HUD:", result.message);
     }
   },
   getLanWsServer: () => _lanWss,
@@ -3253,7 +3253,7 @@ function createWindow() {
     },
     statPath: (p) => fs.promises.stat(p),
     openTerminalAt: (dir) => openTerminalAt(dir),
-    dropLog: (message) => console.log(`Clawd: ${message}`),
+    dropLog: (message) => console.log(`Roary: ${message}`),
   });
 
   registerPermissionIpc({
@@ -3412,7 +3412,7 @@ function installTerminalFocusExtension() {
   extSrc = extSrc.replace("app.asar" + path.sep, "app.asar.unpacked" + path.sep);
 
   if (!fs.existsSync(extSrc)) {
-    console.log("Clawd: terminal-focus extension source not found, skipping auto-install");
+    console.log("Roary: terminal-focus extension source not found, skipping auto-install");
     return;
   }
 
@@ -3435,13 +3435,13 @@ function installTerminalFocusExtension() {
         fs.copyFileSync(path.join(extSrc, file), path.join(dest, file));
       }
       installed++;
-      console.log(`Clawd: installed terminal-focus extension to ${dest}`);
+      console.log(`Roary: installed terminal-focus extension to ${dest}`);
     } catch (err) {
-      console.warn(`Clawd: failed to install extension to ${dest}:`, err.message);
+      console.warn(`Roary: failed to install extension to ${dest}:`, err.message);
     }
   }
   if (installed > 0) {
-    console.log(`Clawd: terminal-focus extension installed to ${installed} editor(s). Restart VS Code/Cursor to activate.`);
+    console.log(`Roary: terminal-focus extension installed to ${installed} editor(s). Restart VS Code/Cursor to activate.`);
   }
 }
 
@@ -3455,7 +3455,7 @@ const gotTheLock = app.requestSingleInstanceLock();
 if (!gotTheLock) {
   if (process.argv.includes(REGISTER_PROTOCOL_DEV_ARG)) {
     const protocolRegistered = codexPetMain.registerProtocolClient();
-    console.log(`Clawd: clawd:// dev protocol registration ${protocolRegistered ? "succeeded" : "failed"}`);
+    console.log(`Roary: clawd:// dev protocol registration ${protocolRegistered ? "succeeded" : "failed"}`);
   }
   // Another instance is already running — quit silently
   app.quit();
@@ -3499,7 +3499,7 @@ if (!gotTheLock) {
 
     const protocolRegistered = codexPetMain.registerProtocolClient();
     if (process.argv.includes(REGISTER_PROTOCOL_DEV_ARG)) {
-      console.log(`Clawd: clawd:// dev protocol registration ${protocolRegistered ? "succeeded" : "failed"}`);
+      console.log(`Roary: clawd:// dev protocol registration ${protocolRegistered ? "succeeded" : "failed"}`);
       app.quit();
       return;
     }
@@ -3514,7 +3514,7 @@ if (!gotTheLock) {
     sessionDebugLog = path.join(app.getPath("userData"), "session-debug.log");
     focusDebugLog = path.join(app.getPath("userData"), "focus-debug.log");
     initTelegramMigrationController().catch((err) => {
-      console.warn("Clawd: migration controller init failed:", err && err.message);
+      console.warn("Roary: migration controller init failed:", err && err.message);
     });
     createWindow();
     // macOS: bridge the OS app-hidden state (⌘H / Dock right-click → 隐藏) to the
@@ -3537,7 +3537,7 @@ if (!gotTheLock) {
     }
     codexPetMain.enqueueImportUrlsFromArgv(process.argv);
     codexPetMain.flushPendingImportUrls().catch((err) => {
-      console.warn("Clawd: Codex Pet import queue failed:", err && err.message);
+      console.warn("Roary: Codex Pet import queue failed:", err && err.message);
     });
 
     // Register persistent global shortcuts from the validated prefs snapshot.
@@ -3553,13 +3553,13 @@ if (!gotTheLock) {
     try {
       hardwareBuddyAdapter.start();
     } catch (err) {
-      console.warn("Clawd: failed to start Hardware Buddy adapter:", err && err.message);
+      console.warn("Roary: failed to start Hardware Buddy adapter:", err && err.message);
       hardwareBuddyLog(`start failed: ${err && err.message ? err.message : err}`);
     }
 
     // Auto-install VS Code/Cursor terminal-focus extension
     try { installTerminalFocusExtension(); } catch (err) {
-      console.warn("Clawd: failed to auto-install terminal-focus extension:", err.message);
+      console.warn("Roary: failed to auto-install terminal-focus extension:", err.message);
     }
 
     // Auto-updater: setup event handlers (user triggers check via tray menu)

@@ -93,11 +93,11 @@ function createIntegrationSyncRuntime(options = {}) {
         port: getHookServerPort(),
       });
       if (added > 0 || updated > 0 || removed > 0) {
-        console.log(`Clawd: synced hooks (added ${added}, updated ${updated}, removed ${removed})`);
+        console.log(`Roary: synced hooks (added ${added}, updated ${updated}, removed ${removed})`);
       }
       return { status: "ok", added, updated, removed };
     } catch (err) {
-      console.warn("Clawd: failed to sync hooks:", err.message);
+      console.warn("Roary: failed to sync hooks:", err.message);
       return { status: "error", message: err && err.message ? err.message : "Failed to sync Claude hooks" };
     }
   }
@@ -108,11 +108,11 @@ function createIntegrationSyncRuntime(options = {}) {
       const { registerGeminiHooks } = require("../hooks/gemini-install.js");
       const result = registerGeminiHooks({ silent: true });
       if (hasPositiveCount(result.added) || hasPositiveCount(result.updated)) {
-        console.log(`Clawd: synced Gemini hooks (added ${result.added}, updated ${result.updated})`);
+        console.log(`Roary: synced Gemini hooks (added ${result.added}, updated ${result.updated})`);
       }
       return normalizeCountSyncResult(result, "Gemini CLI", "gemini-not-installed");
     } catch (err) {
-      console.warn("Clawd: failed to sync Gemini hooks:", err.message);
+      console.warn("Roary: failed to sync Gemini hooks:", err.message);
       return { status: "error", message: err && err.message ? err.message : "Failed to sync Gemini hooks" };
     }
   }
@@ -123,11 +123,11 @@ function createIntegrationSyncRuntime(options = {}) {
       const { registerAntigravityHooks } = require("../hooks/antigravity-install.js");
       const result = registerAntigravityHooks({ silent: true });
       if (hasPositiveCount(result.added) || hasPositiveCount(result.updated)) {
-        console.log(`Clawd: synced Antigravity hooks (added ${result.added}, updated ${result.updated})`);
+        console.log(`Roary: synced Antigravity hooks (added ${result.added}, updated ${result.updated})`);
       }
       return normalizeInstalledFlagResult(result, "Antigravity CLI", "antigravity-not-installed");
     } catch (err) {
-      console.warn("Clawd: failed to sync Antigravity hooks:", err.message);
+      console.warn("Roary: failed to sync Antigravity hooks:", err.message);
       return { status: "error", message: err && err.message ? err.message : "Failed to sync Antigravity hooks" };
     }
   }
@@ -138,11 +138,11 @@ function createIntegrationSyncRuntime(options = {}) {
       const { registerCodeBuddyHooks } = require("../hooks/codebuddy-install.js");
       const result = registerCodeBuddyHooks({ silent: true });
       if (hasPositiveCount(result.added) || hasPositiveCount(result.updated)) {
-        console.log(`Clawd: synced CodeBuddy hooks (added ${result.added}, updated ${result.updated})`);
+        console.log(`Roary: synced CodeBuddy hooks (added ${result.added}, updated ${result.updated})`);
       }
       return normalizeCountSyncResult(result, "CodeBuddy", "codebuddy-not-installed");
     } catch (err) {
-      console.warn("Clawd: failed to sync CodeBuddy hooks:", err.message);
+      console.warn("Roary: failed to sync CodeBuddy hooks:", err.message);
       return { status: "error", message: err && err.message ? err.message : "Failed to sync CodeBuddy hooks" };
     }
   }
@@ -153,11 +153,11 @@ function createIntegrationSyncRuntime(options = {}) {
       const { registerKiroHooks } = require("../hooks/kiro-install.js");
       const result = registerKiroHooks({ silent: true });
       if (hasPositiveCount(result.added) || hasPositiveCount(result.updated)) {
-        console.log(`Clawd: synced Kiro hooks (added ${result.added}, updated ${result.updated})`);
+        console.log(`Roary: synced Kiro hooks (added ${result.added}, updated ${result.updated})`);
       }
       return normalizeCountSyncResult(result, "Kiro CLI", "kiro-not-installed");
     } catch (err) {
-      console.warn("Clawd: failed to sync Kiro hooks:", err.message);
+      console.warn("Roary: failed to sync Kiro hooks:", err.message);
       return { status: "error", message: err && err.message ? err.message : "Failed to sync Kiro hooks" };
     }
   }
@@ -168,11 +168,11 @@ function createIntegrationSyncRuntime(options = {}) {
       const { registerKimiHooks } = require("../hooks/kimi-install.js");
       const result = registerKimiHooks({ silent: true });
       if (hasPositiveCount(result.added) || hasPositiveCount(result.updated)) {
-        console.log(`Clawd: synced Kimi hooks (added ${result.added}, updated ${result.updated})`);
+        console.log(`Roary: synced Kimi hooks (added ${result.added}, updated ${result.updated})`);
       }
       return normalizeCountSyncResult(result, "Kimi Code", "kimi-not-installed");
     } catch (err) {
-      console.warn("Clawd: failed to sync Kimi hooks:", err.message);
+      console.warn("Roary: failed to sync Kimi hooks:", err.message);
       return { status: "error", message: err && err.message ? err.message : "Failed to sync Kimi hooks" };
     }
   }
@@ -183,11 +183,11 @@ function createIntegrationSyncRuntime(options = {}) {
       const { registerQwenCodeHooks } = require("../hooks/qwen-code-install.js");
       const result = registerQwenCodeHooks({ silent: true });
       if (hasPositiveCount(result.added) || hasPositiveCount(result.updated)) {
-        console.log(`Clawd: synced Qwen hooks (added ${result.added}, updated ${result.updated})`);
+        console.log(`Roary: synced Qwen hooks (added ${result.added}, updated ${result.updated})`);
       }
       return normalizeCountSyncResult(result, "Qwen Code", "qwen-not-installed");
     } catch (err) {
-      console.warn("Clawd: failed to sync Qwen hooks:", err.message);
+      console.warn("Roary: failed to sync Qwen hooks:", err.message);
       return { status: "error", message: err && err.message ? err.message : "Failed to sync Qwen hooks" };
     }
   }
@@ -198,14 +198,14 @@ function createIntegrationSyncRuntime(options = {}) {
       const { registerCodexHooks } = require("../hooks/codex-install.js");
       const result = registerCodexHooks({ silent: true });
       if (hasPositiveCount(result.added) || hasPositiveCount(result.updated)) {
-        console.log(`Clawd: synced Codex hooks (added ${result.added}, updated ${result.updated})`);
+        console.log(`Roary: synced Codex hooks (added ${result.added}, updated ${result.updated})`);
       }
       if (Array.isArray(result.warnings)) {
-        for (const warning of result.warnings) console.warn(`Clawd: Codex hook sync warning: ${warning}`);
+        for (const warning of result.warnings) console.warn(`Roary: Codex hook sync warning: ${warning}`);
       }
       return normalizeCountSyncResult(result, "Codex CLI", "codex-not-installed");
     } catch (err) {
-      console.warn("Clawd: failed to sync Codex hooks:", err.message);
+      console.warn("Roary: failed to sync Codex hooks:", err.message);
       return { status: "error", message: err && err.message ? err.message : "Failed to sync Codex hooks" };
     }
   }
@@ -219,10 +219,10 @@ function createIntegrationSyncRuntime(options = {}) {
         forceCodexHooksFeature: options && options.forceCodexHooksFeature === true,
       });
       if (added > 0 || updated > 0 || configChanged) {
-        console.log(`Clawd: repaired Codex hooks (added ${added}, updated ${updated}, configChanged=${!!configChanged})`);
+        console.log(`Roary: repaired Codex hooks (added ${added}, updated ${updated}, configChanged=${!!configChanged})`);
       }
       if (Array.isArray(warnings)) {
-        for (const warning of warnings) console.warn(`Clawd: Codex hook repair warning: ${warning}`);
+        for (const warning of warnings) console.warn(`Roary: Codex hook repair warning: ${warning}`);
         if (warnings.length > 0) {
           return {
             status: "error",
@@ -240,7 +240,7 @@ function createIntegrationSyncRuntime(options = {}) {
           : "Codex hooks repaired",
       };
     } catch (err) {
-      console.warn("Clawd: failed to repair Codex hooks:", err.message);
+      console.warn("Roary: failed to repair Codex hooks:", err.message);
       return { status: "error", message: err && err.message };
     }
   }
@@ -251,11 +251,11 @@ function createIntegrationSyncRuntime(options = {}) {
       const { registerCursorHooks } = require("../hooks/cursor-install.js");
       const result = registerCursorHooks({ silent: true });
       if (hasPositiveCount(result.added) || hasPositiveCount(result.updated)) {
-        console.log(`Clawd: synced Cursor hooks (added ${result.added}, updated ${result.updated})`);
+        console.log(`Roary: synced Cursor hooks (added ${result.added}, updated ${result.updated})`);
       }
       return normalizeCountSyncResult(result, "Cursor Agent", "cursor-not-installed");
     } catch (err) {
-      console.warn("Clawd: failed to sync Cursor hooks:", err.message);
+      console.warn("Roary: failed to sync Cursor hooks:", err.message);
       return { status: "error", message: err && err.message ? err.message : "Failed to sync Cursor hooks" };
     }
   }
@@ -266,11 +266,11 @@ function createIntegrationSyncRuntime(options = {}) {
       const { registerCopilotHooks } = require("../hooks/copilot-install.js");
       const result = registerCopilotHooks({ silent: true });
       if (hasPositiveCount(result.added) || hasPositiveCount(result.updated)) {
-        console.log(`Clawd: synced Copilot hooks (added ${result.added}, updated ${result.updated})`);
+        console.log(`Roary: synced Copilot hooks (added ${result.added}, updated ${result.updated})`);
       }
       return normalizeCountSyncResult(result, "Copilot CLI", "copilot-not-installed");
     } catch (err) {
-      console.warn("Clawd: failed to sync Copilot hooks:", err.message);
+      console.warn("Roary: failed to sync Copilot hooks:", err.message);
       return { status: "error", message: err && err.message ? err.message : "Failed to sync Copilot hooks" };
     }
   }
@@ -281,14 +281,14 @@ function createIntegrationSyncRuntime(options = {}) {
       const { registerOpencodePlugin } = require("../hooks/opencode-install.js");
       const result = registerOpencodePlugin({ silent: true });
       if (result.added || result.created) {
-        console.log(`Clawd: synced opencode plugin (added=${result.added}, created=${result.created})`);
+        console.log(`Roary: synced opencode plugin (added=${result.added}, created=${result.created})`);
       }
       if (result && result.reason === "opencode-not-found") {
         return asSkipped(result, "opencode-not-found", "opencode is not installed; skipped plugin sync");
       }
       return asOk(result);
     } catch (err) {
-      console.warn("Clawd: failed to sync opencode plugin:", err.message);
+      console.warn("Roary: failed to sync opencode plugin:", err.message);
       return { status: "error", message: err && err.message ? err.message : "Failed to sync opencode plugin" };
     }
   }
@@ -299,11 +299,11 @@ function createIntegrationSyncRuntime(options = {}) {
       const { registerPiExtension } = require("../hooks/pi-install.js");
       const result = registerPiExtension({ silent: true });
       if (result.installed && result.updated) {
-        console.log("Clawd: synced Pi extension");
+        console.log("Roary: synced Pi extension");
       }
       return normalizeInstalledFlagResult(result, "Pi", "pi-not-found");
     } catch (err) {
-      console.warn("Clawd: failed to sync Pi extension:", err.message);
+      console.warn("Roary: failed to sync Pi extension:", err.message);
       return { status: "error", message: err && err.message ? err.message : "Failed to sync Pi extension" };
     }
   }
@@ -314,11 +314,11 @@ function createIntegrationSyncRuntime(options = {}) {
       const { registerOpenClawPlugin } = require("../hooks/openclaw-install.js");
       const result = registerOpenClawPlugin({ silent: true });
       if (result.installed && result.updated) {
-        console.log("Clawd: synced OpenClaw plugin");
+        console.log("Roary: synced OpenClaw plugin");
       }
       return normalizeInstalledFlagResult(result, "OpenClaw", "openclaw-not-found");
     } catch (err) {
-      console.warn("Clawd: failed to sync OpenClaw plugin:", err.message);
+      console.warn("Roary: failed to sync OpenClaw plugin:", err.message);
       return { status: "error", message: err && err.message ? err.message : "Failed to sync OpenClaw plugin" };
     }
   }
@@ -336,7 +336,7 @@ function createIntegrationSyncRuntime(options = {}) {
       }
       return { status: "ok", ...result, message: "OpenClaw plugin repaired" };
     } catch (err) {
-      console.warn("Clawd: failed to repair OpenClaw plugin:", err.message);
+      console.warn("Roary: failed to repair OpenClaw plugin:", err.message);
       return { status: "error", message: err && err.message ? err.message : "Failed to repair OpenClaw plugin" };
     }
   }
@@ -357,15 +357,15 @@ function createIntegrationSyncRuntime(options = {}) {
       }
       const result = registerHermesPlugin({ silent: true });
       if (result && result.status === "error") {
-        console.warn("Clawd: failed to sync Hermes plugin:", result.message);
+        console.warn("Roary: failed to sync Hermes plugin:", result.message);
         return result;
       }
       if (result && (result.installed > 0 || result.updated > 0)) {
-        console.log(`Clawd: synced Hermes plugin (installed=${result.installed}, updated=${result.updated})`);
+        console.log(`Roary: synced Hermes plugin (installed=${result.installed}, updated=${result.updated})`);
       }
       return asOk(result);
     } catch (err) {
-      console.warn("Clawd: failed to sync Hermes plugin:", err.message);
+      console.warn("Roary: failed to sync Hermes plugin:", err.message);
       return { status: "error", message: err && err.message ? err.message : "Failed to sync Hermes plugin" };
     }
   }
@@ -376,11 +376,11 @@ function createIntegrationSyncRuntime(options = {}) {
       const { registerQoderHooks } = require("../hooks/qoder-install.js");
       const result = registerQoderHooks({ silent: true });
       if (hasPositiveCount(result.added) || hasPositiveCount(result.updated)) {
-        console.log(`Clawd: synced Qoder hooks (added ${result.added}, updated ${result.updated})`);
+        console.log(`Roary: synced Qoder hooks (added ${result.added}, updated ${result.updated})`);
       }
       return normalizeCountSyncResult(result, "Qoder", "qoder-not-installed");
     } catch (err) {
-      console.warn("Clawd: failed to sync Qoder hooks:", err.message);
+      console.warn("Roary: failed to sync Qoder hooks:", err.message);
       return { status: "error", message: err && err.message ? err.message : "Failed to sync Qoder hooks" };
     }
   }
@@ -391,11 +391,11 @@ function createIntegrationSyncRuntime(options = {}) {
       const { registerCodewhaleHooks } = require("../hooks/codewhale-install.js");
       const result = registerCodewhaleHooks({ silent: true });
       if (hasPositiveCount(result.added) || hasPositiveCount(result.updated)) {
-        console.log(`Clawd: synced CodeWhale hooks (added ${result.added}, updated ${result.updated})`);
+        console.log(`Roary: synced CodeWhale hooks (added ${result.added}, updated ${result.updated})`);
       }
       return normalizeCountSyncResult(result, "CodeWhale", "codewhale-not-installed");
     } catch (err) {
-      console.warn("Clawd: failed to sync CodeWhale hooks:", err.message);
+      console.warn("Roary: failed to sync CodeWhale hooks:", err.message);
       return { status: "error", message: err && err.message ? err.message : "Failed to sync CodeWhale hooks" };
     }
   }
@@ -406,11 +406,11 @@ function createIntegrationSyncRuntime(options = {}) {
       const { registerReasonixHooks } = require("../hooks/reasonix-install.js");
       const result = registerReasonixHooks({ silent: true });
       if (hasPositiveCount(result.added) || hasPositiveCount(result.updated)) {
-        console.log(`Clawd: synced Reasonix hooks (added ${result.added}, updated ${result.updated})`);
+        console.log(`Roary: synced Reasonix hooks (added ${result.added}, updated ${result.updated})`);
       }
       return normalizeCountSyncResult(result, "Reasonix", "reasonix-not-installed");
     } catch (err) {
-      console.warn("Clawd: failed to sync Reasonix hooks:", err.message);
+      console.warn("Roary: failed to sync Reasonix hooks:", err.message);
       return { status: "error", message: err && err.message ? err.message : "Failed to sync Reasonix hooks" };
     }
   }
@@ -495,7 +495,7 @@ function createIntegrationSyncRuntime(options = {}) {
       const result = uninstall({ ...agentOptions, silent: true });
       return result && typeof result === "object" ? result : true;
     } catch (err) {
-      console.warn(`Clawd: failed to uninstall ${agentId} integration:`, err.message);
+      console.warn(`Roary: failed to uninstall ${agentId} integration:`, err.message);
       return {
         status: "error",
         message: err && err.message ? err.message : `Failed to uninstall ${agentId} integration`,

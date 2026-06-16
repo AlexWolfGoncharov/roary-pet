@@ -284,7 +284,7 @@ function startHttpServer() {
   httpServer.on("listening", () => {
     activeServerPort = listenPorts[listenIndex];
     writeRuntimeConfigFn(activeServerPort);
-    console.log(`Clawd state server listening on 127.0.0.1:${activeServerPort}`);
+    console.log(`Roary state server listening on 127.0.0.1:${activeServerPort}`);
     // Defer hook/plugin registration off the startup path. Each sync call
     // reads+parses+writes a config JSON (50-150ms cumulative on slow disks),
     // and they operate on independent files for independent agents, so

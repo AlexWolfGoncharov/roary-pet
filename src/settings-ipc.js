@@ -335,7 +335,7 @@ function registerSettingsIpc(options = {}) {
         })
       );
     } catch (err) {
-      console.warn("Clawd: settings:list-themes failed:", err && err.message);
+      console.warn("Roary: settings:list-themes failed:", err && err.message);
       return [];
     }
   });
@@ -401,7 +401,7 @@ function registerSettingsIpc(options = {}) {
       });
       return { confirmed: response === 0 };
     } catch (err) {
-      console.warn("Clawd: confirm-remove-theme dialog failed:", err && err.message);
+      console.warn("Roary: confirm-remove-theme dialog failed:", err && err.message);
       return { confirmed: false };
     }
   });
@@ -410,7 +410,7 @@ function registerSettingsIpc(options = {}) {
     try {
       return getAllAgents().map(mapAgentMetadata);
     } catch (err) {
-      console.warn("Clawd: settings:list-agents failed:", err && err.message);
+      console.warn("Roary: settings:list-agents failed:", err && err.message);
       return [];
     }
   });
@@ -419,7 +419,7 @@ function registerSettingsIpc(options = {}) {
     try {
       return detectAgentInstallations({ fs, path, now });
     } catch (err) {
-      console.warn("Clawd: settings:detect-agent-installations failed:", err && err.message);
+      console.warn("Roary: settings:detect-agent-installations failed:", err && err.message);
       return {
         checkedAt: now(),
         agents: [],
@@ -434,7 +434,7 @@ function registerSettingsIpc(options = {}) {
     try {
       heroSvgContent = fs.readFileSync(aboutHeroSvgPath, "utf8");
     } catch (err) {
-      console.warn("Clawd: failed to read about hero SVG:", err && err.message);
+      console.warn("Roary: failed to read about hero SVG:", err && err.message);
     }
     let pendingUpdateVersion = "";
     let autoUpdateCheck = true;

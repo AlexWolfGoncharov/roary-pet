@@ -127,7 +127,7 @@ function createCodexPetMain(options = {}) {
       options.rebuildAllMenus();
     } catch (err) {
       if (optionsForRebuild.logFailure === false) return;
-      console.warn("Clawd: rebuildAllMenus after Codex Pet refresh failed:", err && err.message);
+      console.warn("Roary: rebuildAllMenus after Codex Pet refresh failed:", err && err.message);
     }
   }
 
@@ -150,7 +150,7 @@ function createCodexPetMain(options = {}) {
         diagnostics: [{ errors: [`failed to sync Codex Pet themes: ${err && err.message ? err.message : err}`] }],
       });
       lastSyncSummary = summary;
-      console.warn("Clawd: failed to sync Codex Pet themes:", err && err.message);
+      console.warn("Roary: failed to sync Codex Pet themes:", err && err.message);
       return summary;
     }
   }
@@ -295,7 +295,7 @@ function createCodexPetMain(options = {}) {
     if (app.isReady()) {
       setImmediate(() => {
         flushPendingImportUrls().catch((err) => {
-          console.warn("Clawd: Codex Pet import queue failed:", err && err.message);
+          console.warn("Roary: Codex Pet import queue failed:", err && err.message);
         });
       });
     }
@@ -317,7 +317,7 @@ function createCodexPetMain(options = {}) {
         return app.setAsDefaultProtocolClient(CLAWD_PROTOCOL_SCHEME, process.execPath, [appRoot]);
       }
     } catch (err) {
-      console.warn("Clawd: failed to register clawd:// protocol:", err && err.message);
+      console.warn("Roary: failed to register clawd:// protocol:", err && err.message);
     }
     return false;
   }
@@ -434,7 +434,7 @@ function createCodexPetMain(options = {}) {
       });
       return response === 0;
     } catch (err) {
-      console.warn("Clawd: Codex Pet replace confirmation failed:", err && err.message);
+      console.warn("Roary: Codex Pet replace confirmation failed:", err && err.message);
       return false;
     }
   }
@@ -489,7 +489,7 @@ function createCodexPetMain(options = {}) {
       });
       return response === 0;
     } catch (err) {
-      console.warn("Clawd: Codex Pet removal confirmation failed:", err && err.message);
+      console.warn("Roary: Codex Pet removal confirmation failed:", err && err.message);
       return false;
     }
   }
@@ -534,7 +534,7 @@ function createCodexPetMain(options = {}) {
       });
       if (response !== 0) return;
     } catch (err) {
-      console.warn("Clawd: Codex Pet import confirmation failed:", err && err.message);
+      console.warn("Roary: Codex Pet import confirmation failed:", err && err.message);
       return;
     }
 
@@ -552,7 +552,7 @@ function createCodexPetMain(options = {}) {
       });
     } catch (err) {
       if (err && err.code === codexPetImporter.ERR_REPLACE_DECLINED) return;
-      console.warn("Clawd: Codex Pet import failed:", err && err.message);
+      console.warn("Roary: Codex Pet import failed:", err && err.message);
       await showImportError(err && err.message);
     }
   }
@@ -565,7 +565,7 @@ function createCodexPetMain(options = {}) {
       if (message) return { status: "error", message };
       return { status: "ok", path: dir };
     } catch (err) {
-      console.warn("Clawd: settings:open-codex-pets-dir failed:", err && err.message);
+      console.warn("Roary: settings:open-codex-pets-dir failed:", err && err.message);
       return { status: "error", message: (err && err.message) || String(err) };
     }
   }
@@ -587,7 +587,7 @@ function createCodexPetMain(options = {}) {
         ],
       });
     } catch (err) {
-      console.warn("Clawd: Codex Pet zip picker failed:", err && err.message);
+      console.warn("Roary: Codex Pet zip picker failed:", err && err.message);
       return { status: "error", message: (err && err.message) || String(err) };
     }
     if (!picked || picked.canceled || !Array.isArray(picked.filePaths) || !picked.filePaths[0]) {
@@ -615,7 +615,7 @@ function createCodexPetMain(options = {}) {
       };
     } catch (err) {
       if (err && err.code === codexPetImporter.ERR_REPLACE_DECLINED) return { status: "cancel" };
-      console.warn("Clawd: Codex Pet zip import failed:", err && err.message);
+      console.warn("Roary: Codex Pet zip import failed:", err && err.message);
       return { status: "error", message: (err && err.message) || String(err) };
     }
   }
@@ -666,7 +666,7 @@ function createCodexPetMain(options = {}) {
         switchedToFallback: !!refresh.switchedToFallback,
       };
     } catch (err) {
-      console.warn("Clawd: Codex Pet removal failed:", err && err.message);
+      console.warn("Roary: Codex Pet removal failed:", err && err.message);
       return { status: "error", message: (err && err.message) || String(err) };
     }
   }

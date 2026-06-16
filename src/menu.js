@@ -91,7 +91,7 @@ module.exports = function initMenu(ctx) {
           }
           rebuildAllMenus();
         }).catch((err) => {
-          console.warn("Clawd: auto-pilot confirm failed:", err && err.message);
+          console.warn("Roary: auto-pilot confirm failed:", err && err.message);
           rebuildAllMenus();
         });
       },
