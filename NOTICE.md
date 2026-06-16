@@ -8,6 +8,12 @@ artwork and the `themes/roary/` theme are © Fintech Farm.
 
 This project includes third-party materials.
 
+## Roary roar sound
+
+`themes/roary/sounds/roary-roar.mp3` is a lion roar sound effect from Mixkit
+(https://mixkit.co), used under the Mixkit Free Sound Effects License (free for
+commercial use, no attribution required).
+
 ## OpenClaw Pixel Lobster Icon
 
 `assets/icons/agents/openclaw.svg` is adapted from OpenClaw's
