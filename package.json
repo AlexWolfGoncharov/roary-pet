@@ -1,6 +1,6 @@
 {
   "name": "roary-pet",
-  "version": "0.10.0",
+  "version": "0.10.1",
   "description": "Roary the lion — a desktop pet that reacts to your AI coding sessions in real-time. Fork of clawd-on-desk.",
   "main": "src/main.js",
   "scripts": {
