@@ -15,7 +15,7 @@ Then Settings… → Theme → **Roary**.
 | State | Asset | Source |
 |---|---|---|
 | idle | idle.apng | cashback_brows.json |
-| thinking | thinking.apng | harry_potter.json (wizard) |
+| thinking | thinking.apng | meditation.json (lotus pose) |
 | working | working.apng | turkish_chef_salt.json |
 | juggling / working-tier-2 | juggling.apng | playing.json |
 | error | error.apng | leo-sad.json |
