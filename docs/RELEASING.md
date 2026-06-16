@@ -43,6 +43,12 @@ build step.
 
 ## Auto-update note
 
-In-app auto-update is **disabled** in this fork (`autoUpdateCheck` default false,
-update menu hidden). Users update by downloading the new `.dmg` from Releases. To
-re-enable in-app updates, re-point the updater and flip the pref back on.
+In-app auto-update is **enabled** and reads this fork's own GitHub Releases
+(`AlexWolfGoncharov/roary-pet`; `autoUpdateCheck` default true, updater URLs and
+`build.publish` point at the fork). Each tagged release publishes `latest*.yml`
+feed files alongside the installers, which the updater consumes.
+
+Caveat: the macOS app is **unsigned**, so it can't silently self-install on macOS
+(Squirrel.Mac requires a valid signature). On macOS the updater notifies and opens
+the Releases page for a manual `.dmg` download; Windows can self-update. Once the
+mac build is signed/notarized, full in-app auto-update works on macOS too.

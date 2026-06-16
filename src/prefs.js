@@ -324,8 +324,9 @@ const SCHEMA = {
   },
   // Background update-check toggle. When true, the scheduler in updater.js
   // runs a quiet GitHub discovery on a 12-hour cycle (packaged builds only).
-  // Roary Pet fork: auto-update disabled by default (no upstream release feed).
-  autoUpdateCheck: { type: "boolean", default: false },
+  // Roary Pet fork: auto-update on, checking the fork's own GitHub Releases
+  // (AlexWolfGoncharov/roary-pet — see updater.js URLs + package.json build.publish).
+  autoUpdateCheck: { type: "boolean", default: true },
   // Last version the scheduler discovered that is newer than the running
   // app. Empty string = none pending. Surfaced in the tray label and the
   // About version-row hint. Cleared on install or by

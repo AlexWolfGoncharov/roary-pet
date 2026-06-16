@@ -1319,9 +1319,13 @@ function initUpdater(ctx, deps = {}) {
   }
 
   function getUpdateMenuItem() {
-    // Roary Pet fork: auto-update is disabled (no upstream release feed).
-    // Returning null hides the update entry from tray/context menus.
-    return null;
+    return {
+      label: getUpdateMenuLabel(),
+      enabled: updateStatus !== "checking" && updateStatus !== "downloading",
+      click: () => updateStatus === "ready"
+        ? getAutoUpdater()?.quitAndInstall(false, true)
+        : checkForUpdates(true),
+    };
   }
 
   return {
