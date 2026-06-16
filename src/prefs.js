@@ -228,7 +228,7 @@ const SCHEMA = {
       "copilot-cli": { integrationInstalled: false, enabled: false, permissionsEnabled: true, notificationHookEnabled: true },
       "cursor-agent": { integrationInstalled: false, enabled: false, permissionsEnabled: true, notificationHookEnabled: true },
       "gemini-cli": { integrationInstalled: false, enabled: false, permissionsEnabled: true, notificationHookEnabled: true },
-      // Antigravity is state-only post-D2 — Clawd never surfaces a permission
+      // Antigravity is state-only post-D2 — Roary never surfaces a permission
       // bubble for agy regardless of this flag (see server-route-permission.js
       // antigravity branch). Default kept as false so legacy reads don't see a
       // stale "true" implying bubbles are enabled.
@@ -424,7 +424,7 @@ function normalizeStaleTriple(out) {
 // v2 → v3: raise passive notification bubble default from 3s to 6s. Users
 //   who explicitly chose 3s in v2 are indistinguishable from defaulted-3 and
 //   are migrated too; other non-default values are preserved.
-// v3 → v4: Pi returns to a state-only integration. Clawd no longer inserts a
+// v3 → v4: Pi returns to a state-only integration. Roary no longer inserts a
 //   permission prompt into Pi's default YOLO flow, so the Pi permission subgate
 //   is reset off.
 function migrate(raw) {
@@ -560,7 +560,7 @@ function migrate(raw) {
   }
   // v10 -> v11: agent integrations are installed on demand. Entries that were
   // actually present in an old prefs file predate `integrationInstalled`, so
-  // keep them managed by Clawd. Missing entries fall through to v11 defaults
+  // keep them managed by Roary. Missing entries fall through to v11 defaults
   // instead of pretending that a never-seen/newer agent was installed.
   if (out.version < 11) {
     if (out.agents && typeof out.agents === "object") {

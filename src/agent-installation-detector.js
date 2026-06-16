@@ -231,14 +231,14 @@ function detectGeminiInstallation(descriptor, paths, options) {
       "config-file",
       classified.unreadable
         ? `${paths.configPath} exists but could not be classified`
-        : `${paths.configPath} contains non-Clawd Gemini settings`
+        : `${paths.configPath} contains non-Roary Gemini settings`
     );
   }
   if (geminiDirHasNonClawdSignals(fsImpl, paths.parentDir, paths.configPath, descriptor.marker)) {
     return installationResult(true, "medium", "parent-dir", `${paths.parentDir} contains Gemini CLI files`);
   }
   if (classified.exists && classified.clawdOnly) {
-    return notFound(`${paths.configPath} contains only Clawd-managed Gemini hook signals`);
+    return notFound(`${paths.configPath} contains only Roary-managed Gemini hook signals`);
   }
   return notFound();
 }
@@ -314,14 +314,14 @@ function detectClawdIntegration(descriptor, paths, options) {
     const markerPath = path.join(paths.configPath, descriptor.markerFile || ".clawd-managed.json");
     return fileExists(fsImpl, markerPath)
       ? { detected: true, reason: "marker-file", detail: `${markerPath} exists`, paths: { markerPath } }
-      : { detected: false, reason: "not-found", detail: "No Clawd-managed Pi extension marker found" };
+      : { detected: false, reason: "not-found", detail: "No Roary-managed Pi extension marker found" };
   }
   if (descriptor.agentId === "hermes") {
     const files = Array.isArray(descriptor.managedFiles) ? descriptor.managedFiles : [];
     const found = files.some((file) => fileExists(fsImpl, path.join(paths.configPath, file)));
     return found
-      ? { detected: true, reason: "managed-files", detail: `${paths.configPath} contains Clawd plugin files`, paths: { pluginDir: paths.configPath } }
-      : { detected: false, reason: "not-found", detail: "No Clawd-managed Hermes plugin files found" };
+      ? { detected: true, reason: "managed-files", detail: `${paths.configPath} contains Roary plugin files`, paths: { pluginDir: paths.configPath } }
+      : { detected: false, reason: "not-found", detail: "No Roary-managed Hermes plugin files found" };
   }
   if (descriptor.configMode === "dir") {
     return markerInDirectoryFiles(fsImpl, paths.configPath, descriptor.marker)
@@ -340,7 +340,7 @@ function detectClawdIntegration(descriptor, paths, options) {
   return {
     detected: false,
     reason: "not-found",
-    detail: `No ${descriptor.marker || "Clawd"} marker found`,
+    detail: `No ${descriptor.marker || "Roary"} marker found`,
   };
 }
 

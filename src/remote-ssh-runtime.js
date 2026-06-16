@@ -243,7 +243,7 @@ function classifyStderr(stderr) {
 // The probe is a single ssh + node-e GET against the remote forward port.
 // Exit codes are defined by buildProbeCommand below:
 //   0   header match + status 200 (connected)
-//   1   header match + non-200    (local Clawd server unhealthy)
+//   1   header match + non-200    (local Roary server unhealthy)
 //   2   http.get error event       (forward up but server unresponsive)
 //   3   header mismatch            (port hijacked by another HTTP service)
 //   4   req.setTimeout fired       (server accepted TCP but hung)

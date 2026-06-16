@@ -2,7 +2,7 @@
 
 // Telegram bot token storage abstraction.
 //
-// Plan §298-304 invariant: the Clawd source must NEVER read the bot-token
+// Plan §298-304 invariant: the Roary source must NEVER read the bot-token
 // environment variable from the host process. The token lives only at
 // `userData/telegram-approval.env` (the same file the Go sidecar reads through
 // CLAWD_TG_BOT_TOKEN_FILE). This module exposes a TelegramTokenStore interface

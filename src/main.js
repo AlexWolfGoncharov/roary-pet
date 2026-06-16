@@ -161,14 +161,14 @@ if (isWin) {
 
 // ── Windows: switch the dev console to UTF-8 ──
 //
-// `npm start` attaches Clawd to a parent PowerShell/cmd console. That
+// `npm start` attaches Roary to a parent PowerShell/cmd console. That
 // console defaults to the system codepage (CP936 on zh-CN), so any
 // Chinese string we console.log lands as mojibake — the strings are
 // already UTF-8 in memory (after the GBK stderr decode fix), but the
 // console interprets the bytes as GBK on the way out.
 //
 // SetConsoleOutputCP(65001) tells the attached console to interpret
-// stdout/stderr as UTF-8 while Clawd is running. Packaged builds run under
+// stdout/stderr as UTF-8 while Roary is running. Packaged builds run under
 // the Windows GUI subsystem with no console attached, so this call is a
 // no-op there.
 let _restoreConsoleOutputCP = null;
@@ -341,7 +341,7 @@ const _settingsController = createSettingsController({
     repairLocalServer: () => _server && typeof _server.repairRuntimeStatus === "function"
       ? _server.repairRuntimeStatus()
       : false,
-    restartRoary: _restartClawdNow,
+    restartClawd: _restartClawdNow,
     clearSessionsByAgent: (id) => agentRuntime ? agentRuntime.clearSessionsByAgent(id) : 0,
     dismissPermissionsByAgent: (id, options) => agentRuntime ? agentRuntime.dismissPermissionsByAgent(id, options) : 0,
     resizePet: _deferredResizePet,
@@ -2071,7 +2071,7 @@ async function startTelegramApprovalSidecar() {
   }
   if (telegramApprovalSidecar) await stopTelegramApprovalSidecar();
   // The bot token only ever lives at userData/telegram-approval.env on disk.
-  // The sidecar reads it from there directly — Clawd's main process must never
+  // The sidecar reads it from there directly — Roary's main process must never
   // pipe a token value through process.env or child env, so there is no
   // botToken option here and no CLAWD_TG_BOT_TOKEN read from process.env.
   telegramApprovalSidecar = createTelegramApprovalSidecar({
@@ -2310,7 +2310,7 @@ async function sendTelegramApprovalTest() {
   const timer = setTimeout(() => controller.abort(), 60 * 1000);
   try {
     const decision = await client.requestApproval({
-      title: "Clawd Telegram approval test",
+      title: "Roary Telegram approval test",
       detail: "This is a settings test message. It is not attached to any agent permission request.",
     }, { signal: controller.signal });
     if (decision === "allow" || decision === "deny") {
@@ -2979,7 +2979,7 @@ const {
 notifyUpdaterSilentExit = () => { try { updaterOnSilentModeExit(); } catch {} };
 
 // #329: react to the autoUpdateCheck toggle in real time so users see
-// the scheduler start/stop without restarting Clawd.
+// the scheduler start/stop without restarting Roary.
 try {
   _settingsController.subscribeKey("autoUpdateCheck", (value) => {
     try {

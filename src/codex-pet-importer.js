@@ -160,7 +160,7 @@ async function downloadHttpsBuffer(rawUrl, options = {}) {
       port: url.port || 443,
       method: "GET",
       path: `${url.pathname}${url.search}`,
-      headers: { "User-Agent": "Clawd-Codex-Pet-Importer" },
+      headers: { "User-Agent": "Roary-Codex-Pet-Importer" },
       lookup: (_hostname, _opts, cb) => cb(null, resolved.address, resolved.family),
       timeout: options.timeoutMs || 30000,
     }, (res) => {
@@ -499,7 +499,7 @@ function normalizePackageRelativePath(value, fieldName) {
 
 function derivePackageDirName(manifest) {
   // Import package directories may preserve Unicode names. The adapter derives
-  // separate ASCII-safe Clawd theme ids from the installed package metadata.
+  // separate ASCII-safe Roary theme ids from the installed package metadata.
   const candidate = sanitizePackageDirName(manifest.id) || sanitizePackageDirName(manifest.displayName);
   if (candidate) return candidate;
   const hash = crypto.createHash("sha1").update(JSON.stringify(manifest)).digest("hex").slice(0, 8);

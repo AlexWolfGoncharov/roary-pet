@@ -29,21 +29,21 @@ const ANIMATION_OVERRIDES_EXPORT_DIALOG_STRINGS = {
     saveTitle: "Export Animation Overrides",
     openTitle: "Import Animation Overrides",
     defaultName: (ts) => `clawd-animation-overrides-${ts}.json`,
-    jsonFilter: "Clawd Animation Overrides",
+    jsonFilter: "Roary Animation Overrides",
     nothingToExport: "No animation overrides to export. Override something first.",
   },
   ru: {
     saveTitle: "Экспорт переопределений анимаций",
     openTitle: "Импорт переопределений анимаций",
     defaultName: (ts) => `clawd-animation-overrides-${ts}.json`,
-    jsonFilter: "Переопределения анимаций Clawd",
+    jsonFilter: "Переопределения анимаций Roary",
     nothingToExport: "Нет переопределений анимаций для экспорта. Сначала переопределите что-нибудь.",
   },
   uk: {
     saveTitle: "Експорт перевизначень анімацій",
     openTitle: "Імпорт перевизначень анімацій",
     defaultName: (ts) => `clawd-animation-overrides-${ts}.json`,
-    jsonFilter: "Перевизначення анімацій Clawd",
+    jsonFilter: "Перевизначення анімацій Roary",
     nothingToExport: "Немає перевизначень анімацій для експорту. Спочатку перевизначте щось.",
   },
 };
@@ -1240,11 +1240,11 @@ function createSettingsAnimationOverridesMain(options = {}) {
     }
 
     if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) {
-      return { status: "error", message: "file is not a Clawd animation overrides export" };
+      return { status: "error", message: "file is not a Roary animation overrides export" };
     }
     const magic = parsed.clawdAnimationOverrides;
     if (typeof magic !== "number") {
-      return { status: "error", message: "file is not a Clawd animation overrides export" };
+      return { status: "error", message: "file is not a Roary animation overrides export" };
     }
 
     const commandResult = await settingsController.applyCommand("importAnimationOverrides", {

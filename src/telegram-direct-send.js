@@ -500,7 +500,7 @@ function createTelegramDirectSend({
     if (!promptText) {
       return {
         status: "empty",
-        text: "Send text as a reply to a Clawd completion notification.",
+        text: "Send text as a reply to a Roary completion notification.",
       };
     }
 
@@ -512,7 +512,7 @@ function createTelegramDirectSend({
       return {
         status: "unmapped",
         deliveryId: deliveryEntry.id,
-        text: "Reply to a Clawd completion notification to choose the session.",
+        text: "Reply to a Roary completion notification to choose the session.",
       };
     }
 

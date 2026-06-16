@@ -19,7 +19,7 @@ const SIDECAR_BINARY_BASENAME = "cc-connect-clawd";
 const SIDECAR_RESOURCE_ROOT = path.join("sidecars", "cc-connect-clawd");
 const DEV_FETCH_TARGETS = new Set(["windows-x64", "windows-arm64", "darwin-x64", "darwin-arm64", "linux-x64"]);
 // Note: the sidecar reads the token from the env-file at SIDECAR_ENV_TOKEN_FILE
-// (which itself contains a line like `CLAWD_TG_BOT_TOKEN=<token>`). Clawd's
+// (which itself contains a line like `CLAWD_TG_BOT_TOKEN=<token>`). Roary's
 // main process MUST NOT pipe a token into the child env directly — that path
 // was removed so the token can only live on disk at the userData env-file.
 
@@ -438,7 +438,7 @@ class TelegramApprovalSidecar extends EventEmitter {
   _handleStderr(chunk) {
     this.stderrBuffer += String(chunk || "");
     // Cap the buffer so a sidecar emitting megabytes of unterminated output
-    // can't blow up Clawd memory. Once the cap trips we flush what we have as
+    // can't blow up Roary memory. Once the cap trips we flush what we have as
     // a single (redacted) line — better to log a slightly-truncated message
     // than to retain unbounded raw bytes that might contain a half-token.
     if (this.stderrBuffer.length > MAX_HANDSHAKE_BUFFER) {

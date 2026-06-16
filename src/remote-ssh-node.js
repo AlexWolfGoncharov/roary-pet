@@ -2,7 +2,7 @@
 
 // Remote SSH Node.js resolution helpers.
 //
-// Clawd runs remote commands through `ssh host <command>`, which is a
+// Roary runs remote commands through `ssh host <command>`, which is a
 // non-interactive remote shell. Node managers such as nvm/fnm/asdf/mise often
 // only populate PATH from interactive shell startup files, so a bare `node`
 // is not reliable on remotes. This module probes for an absolute Node binary

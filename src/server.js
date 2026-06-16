@@ -216,7 +216,7 @@ function repairRuntimeStatus() {
   }
   return {
     status: "error",
-    message: "Local server is not listening; restart Clawd",
+    message: "Local server is not listening; restart Roary",
   };
 }
 

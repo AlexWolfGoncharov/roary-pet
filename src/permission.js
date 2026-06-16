@@ -247,7 +247,7 @@ function computePassiveNotifyRemainingMs(createdAt, autoCloseMs, now = Date.now(
 //   3. corner fallback — only when neither side has bw of clearance, fall
 //                         back to the work area's bottom-right corner
 //
-// followPet=false → bottom-right of the work area (default Clawd behavior).
+// followPet=false → bottom-right of the work area (default Roary behavior).
 //
 // Visual invariant across ALL branches: bubbles[0] (oldest) ends up at the
 // highest y, bubbles[N-1] (newest) at the lowest y. Crossing a layout
@@ -723,7 +723,7 @@ function showPermissionBubble(permEntry) {
   bub.showInactive();
   repositionDependentBubbles();
   keepOutOfTaskbar(bub);
-  // macOS: defer full visibility restoration to avoid activating Clawd
+  // macOS: defer full visibility restoration to avoid activating Roary
   if (isMac) deferMacFloatingVisibility(ctx, bub);
   else ctx.reapplyMacVisibility();
 
@@ -900,7 +900,7 @@ function isRemoteApprovalActionable(permEntry) {
 // Returns a redacted summary string, or null when no agent-supplied description
 // is available. We refuse to send a Telegram approval card without something
 // describing the action — the local bubble shows the full tool input, so a
-// Telegram-only "Tool input hidden by Clawd." card would let the user approve
+// Telegram-only "Tool input hidden by Roary." card would let the user approve
 // a black box.
 function buildRemoteApprovalSummary(permEntry) {
   const input = permEntry && permEntry.toolInput && typeof permEntry.toolInput === "object"
@@ -1874,8 +1874,8 @@ function cleanup() {
   for (const perm of [...pendingPermissions]) {
     if (perm._delayTimer) clearTimeout(perm._delayTimer);
     if (perm.autoExpireTimer) clearTimeout(perm.autoExpireTimer);
-    if (perm.isCodex || perm.isQwenCode || perm.isCopilotCli || perm.isAntigravity || perm.isHermes) resolvePermissionEntry(perm, "no-decision", "Clawd is quitting");
-    else resolvePermissionEntry(perm, "deny", "Clawd is quitting");
+    if (perm.isCodex || perm.isQwenCode || perm.isCopilotCli || perm.isAntigravity || perm.isHermes) resolvePermissionEntry(perm, "no-decision", "Roary is quitting");
+    else resolvePermissionEntry(perm, "deny", "Roary is quitting");
   }
 }
 

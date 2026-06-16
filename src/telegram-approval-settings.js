@@ -6,7 +6,7 @@ const DEFAULT_TG_APPROVAL = Object.freeze({
   enabled: false,
   allowedTgUserId: "",
   targetSessionKey: "",
-  // R1a bare ping gate: when false, Clawd will not send a "finished" message.
+  // R1a bare ping gate: when false, Roary will not send a "finished" message.
   // Native-only (legacy sidecar users silently lack it — see
   // getTelegramCompanionClient in main.js).
   notifyOnComplete: false,
@@ -284,7 +284,7 @@ function readMaskedBotToken({ fs, filePath } = {}) {
 
 // Token state is derived solely from the userData env-file on disk. Earlier
 // versions also accepted the bot-token env var as a "configured" signal, but
-// that path pulled the token value into Clawd's main process and violated the
+// that path pulled the token value into Roary's main process and violated the
 // "bot token only ever lives at userData/telegram-approval.env" invariant.
 // The `env` parameter is retained for signature compatibility but is
 // intentionally ignored.

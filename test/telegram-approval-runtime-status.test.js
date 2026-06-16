@@ -275,7 +275,7 @@ test("R3 diagnostic formatter follows the Clawd language setting", () => {
   });
 
   const text = formatTelegramStatusDiagnostic(diagnostic, { lang: "ru" });
-  assert.match(text, /Статус Clawd Telegram/);
+  assert.match(text, /Статус Roary Telegram/);
   assert.match(text, /Транспорт: нативный/);
   assert.match(text, /Состояние: работает/);
   assert.match(text, /Нативный опрос: выполняется/);
@@ -301,7 +301,7 @@ test("R3 diagnostic formatter localizes status all and falls back to English", (
   };
 
   const uk = formatTelegramStatusDiagnostic(diagnostic, { all: true, lang: "uk" });
-  assert.match(uk, /Статус Clawd Telegram/);
+  assert.match(uk, /Статус Roary Telegram/);
   assert.match(uk, /Транспорт: вимк/);
   assert.match(uk, /Сесії:\n- немає/);
 

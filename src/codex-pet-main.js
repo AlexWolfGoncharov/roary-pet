@@ -342,7 +342,7 @@ function createCodexPetMain(options = {}) {
         cancel: "Cancel",
         ok: "OK",
         confirmMessage: (host) => `Import Codex Pet from ${host}?`,
-        confirmDetail: (url) => `Clawd will download, validate, and install this pet package before switching to it.\n\n${url}`,
+        confirmDetail: (url) => `Roary will download, validate, and install this pet package before switching to it.\n\n${url}`,
         replaceMessage: (name) => `Replace existing local pet "${name}"?`,
         replaceDetail: "A Codex Pet package with the same id already exists locally. Replacing it will overwrite that local package.",
         successMessage: (name) => `Imported "${name}"`,
@@ -354,7 +354,7 @@ function createCodexPetMain(options = {}) {
         cancel: "Отмена",
         ok: "ОК",
         confirmMessage: (host) => `Импортировать Codex Pet с ${host}?`,
-        confirmDetail: (url) => `Clawd скачает, проверит и установит этот пакет питомца, а затем переключится на него.\n\n${url}`,
+        confirmDetail: (url) => `Roary скачает, проверит и установит этот пакет питомца, а затем переключится на него.\n\n${url}`,
         replaceMessage: (name) => `Заменить существующего локального питомца "${name}"?`,
         replaceDetail: "Пакет Codex Pet с таким же id уже есть локально. Замена перезапишет этот локальный пакет.",
         successMessage: (name) => `Импортирован "${name}"`,
@@ -366,7 +366,7 @@ function createCodexPetMain(options = {}) {
         cancel: "Скасувати",
         ok: "Гаразд",
         confirmMessage: (host) => `Імпортувати Codex Pet з ${host}?`,
-        confirmDetail: (url) => `Clawd завантажить, перевірить і встановить цей пакет улюбленця, а потім перемкнеться на нього.\n\n${url}`,
+        confirmDetail: (url) => `Roary завантажить, перевірить і встановить цей пакет улюбленця, а потім перемкнеться на нього.\n\n${url}`,
         replaceMessage: (name) => `Замінити наявного локального улюбленця "${name}"?`,
         replaceDetail: "Пакет Codex Pet з таким самим id уже є локально. Заміна перезапише цей локальний пакет.",
         successMessage: (name) => `Імпортовано "${name}"`,
@@ -421,19 +421,19 @@ function createCodexPetMain(options = {}) {
         uninstall: "Uninstall",
         cancel: "Cancel",
         message: (name) => `Uninstall imported pet "${name}"?`,
-        detail: "Clawd will remove the source package from your Codex pets folder and clean up the generated theme. This cannot be undone.",
+        detail: "Roary will remove the source package from your Codex pets folder and clean up the generated theme. This cannot be undone.",
       },
       ru: {
         uninstall: "Удалить",
         cancel: "Отмена",
         message: (name) => `Удалить импортированного питомца "${name}"?`,
-        detail: "Clawd удалит исходный пакет из вашей папки Codex pets и очистит сгенерированную тему. Это действие нельзя отменить.",
+        detail: "Roary удалит исходный пакет из вашей папки Codex pets и очистит сгенерированную тему. Это действие нельзя отменить.",
       },
       uk: {
         uninstall: "Видалити",
         cancel: "Скасувати",
         message: (name) => `Видалити імпортованого улюбленця "${name}"?`,
-        detail: "Clawd видалить вихідний пакет із вашої папки Codex pets і очистить згенеровану тему. Цю дію не можна скасувати.",
+        detail: "Roary видалить вихідний пакет із вашої папки Codex pets і очистить згенеровану тему. Цю дію не можна скасувати.",
       },
     };
     return all[getLang()] || all.en;
@@ -464,7 +464,7 @@ function createCodexPetMain(options = {}) {
     if (summary.error) throw new Error(summary.error);
     const generated = (summary.themes || []).find((theme) => sameFsPath(theme.packageDir, imported.packageDir, path));
     if (!generated || !generated.themeId) {
-      throw new Error("imported package did not materialize into a Clawd theme");
+      throw new Error("imported package did not materialize into a Roary theme");
     }
     const result = await settingsController.applyCommand("setThemeSelection", { themeId: generated.themeId });
     if (!result || result.status !== "ok") {

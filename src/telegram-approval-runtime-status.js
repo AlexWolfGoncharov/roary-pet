@@ -7,7 +7,7 @@ const STATUS_TEXT_MAX = 3600;
 
 const STATUS_LOCALES = Object.freeze({
   en: {
-    title: "Clawd Telegram status",
+    title: "Roary Telegram status",
     labels: {
       transport: "Transport",
       health: "Health",
@@ -69,7 +69,7 @@ const STATUS_LOCALES = Object.freeze({
     truncated: "... truncated",
   },
   ru: {
-    title: "Статус Clawd Telegram",
+    title: "Статус Roary Telegram",
     labels: {
       transport: "Транспорт",
       health: "Состояние",
@@ -131,7 +131,7 @@ const STATUS_LOCALES = Object.freeze({
     truncated: "... обрезано",
   },
   uk: {
-    title: "Статус Clawd Telegram",
+    title: "Статус Roary Telegram",
     labels: {
       transport: "Транспорт",
       health: "Стан",

@@ -532,7 +532,7 @@ function getObjectSvgName(objectEl) {
 // Img channel: <img> for all other formats (SVG/GIF/APNG/WebP pure playback)
 
 /**
- * Determine if a state should attach Clawd-controlled eye tracking.
+ * Determine if a state should attach Roary-controlled eye tracking.
  */
 function needsEyeTracking(state) {
   return _eyeTrackingStates.includes(state);
@@ -1302,7 +1302,7 @@ function reportSoundPlaybackError(phase, err) {
     window.electronAPI.reportSoundPlaybackError({ phase, message });
     return;
   }
-  try { console.warn(`Clawd sound ${phase} failed:`, message); } catch {}
+  try { console.warn(`Roary sound ${phase} failed:`, message); } catch {}
 }
 
 function cacheAudio(url) {

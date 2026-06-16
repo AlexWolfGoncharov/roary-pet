@@ -181,7 +181,7 @@ describe("server-route-permission POST", () => {
 
     assert.deepStrictEqual(res.ctx.calls.sendPermissionResponse, [{
       behavior: "deny",
-      message: "Permission request too large for Clawd bubble; answer in terminal",
+      message: "Permission request too large for Roary bubble; answer in terminal",
     }]);
   });
 

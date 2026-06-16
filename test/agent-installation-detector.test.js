@@ -118,7 +118,7 @@ describe("agent installation detector", () => {
     let report = detectAgentInstallations({ homeDir, now: 1 });
     let gemini = byId(report, "gemini-cli");
     assert.strictEqual(gemini.detectedInstalled, false);
-    assert.match(gemini.detail, /only Clawd-managed/);
+    assert.match(gemini.detail, /only Roary-managed/);
     assert.strictEqual(gemini.clawdIntegration.detected, true);
 
     writeJson(settingsPath, {
