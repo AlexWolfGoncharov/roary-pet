@@ -266,22 +266,22 @@ describe("package build config", () => {
       const workflow = fs.readFileSync(path.join(ROOT, ".github", "workflows", "build.yml"), "utf8");
       const releaseIndex = findWorkflowJobIndex(workflow, "release");
       assert.ok(releaseIndex >= 0, "workflow should define a release job");
-      const releaseGateIndex = workflow.indexOf("if: startsWith(github.ref, 'refs/tags/v')", releaseIndex);
-      const bodyPathIndex = workflow.indexOf("body_path: docs/releases/release-${{ github.ref_name }}.md", releaseIndex);
+      const releaseGateIndex = workflow.indexOf("startsWith(github.ref, 'refs/tags/v')", releaseIndex);
+      const notesIndex = workflow.indexOf("generate_release_notes: true", releaseIndex);
       assert.ok(releaseGateIndex >= 0, "release job should be gated to v* tags");
-      assert.ok(bodyPathIndex >= 0, "release job should still use tag-specific release notes");
-      assert.ok(releaseGateIndex < bodyPathIndex, "release job gate should run before release publication");
+      assert.ok(notesIndex >= 0, "release job should use auto-generated release notes");
+      assert.ok(releaseGateIndex < notesIndex, "release job gate should run before release publication");
     });
 
-    it("creates tag releases as drafts for final asset inspection", () => {
+    it("auto-publishes tag releases (not draft)", () => {
       const workflow = fs.readFileSync(path.join(ROOT, ".github", "workflows", "build.yml"), "utf8");
       const releaseIndex = findWorkflowJobIndex(workflow, "release");
       assert.ok(releaseIndex >= 0, "workflow should define a release job");
       const actionIndex = workflow.indexOf("softprops/action-gh-release@v2", releaseIndex);
-      const draftIndex = workflow.indexOf("draft: true", actionIndex);
+      const draftIndex = workflow.indexOf("draft: false", actionIndex);
       const prereleaseIndex = workflow.indexOf("prerelease: ${{ contains(github.ref_name, '-') }}", actionIndex);
       assert.ok(actionIndex >= 0, "release job should use the GitHub release action");
-      assert.ok(draftIndex > actionIndex, "tag releases should be created as drafts first");
+      assert.ok(draftIndex > actionIndex, "tag releases should be auto-published (draft: false)");
       assert.ok(prereleaseIndex > actionIndex, "hyphenated tags should be marked prerelease");
     });
   });
