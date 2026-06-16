@@ -3455,7 +3455,7 @@ const gotTheLock = app.requestSingleInstanceLock();
 if (!gotTheLock) {
   if (process.argv.includes(REGISTER_PROTOCOL_DEV_ARG)) {
     const protocolRegistered = codexPetMain.registerProtocolClient();
-    console.log(`Roary: clawd:// dev protocol registration ${protocolRegistered ? "succeeded" : "failed"}`);
+    console.log(`Roary: roary:// dev protocol registration ${protocolRegistered ? "succeeded" : "failed"}`);
   }
   // Another instance is already running — quit silently
   app.quit();
@@ -3499,7 +3499,7 @@ if (!gotTheLock) {
 
     const protocolRegistered = codexPetMain.registerProtocolClient();
     if (process.argv.includes(REGISTER_PROTOCOL_DEV_ARG)) {
-      console.log(`Roary: clawd:// dev protocol registration ${protocolRegistered ? "succeeded" : "failed"}`);
+      console.log(`Roary: roary:// dev protocol registration ${protocolRegistered ? "succeeded" : "failed"}`);
       app.quit();
       return;
     }

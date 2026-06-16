@@ -8,7 +8,7 @@ const defaultCodexPetAdapter = require("./codex-pet-adapter");
 const defaultCodexPetImporter = require("./codex-pet-importer");
 
 const REGISTER_PROTOCOL_DEV_ARG = "--register-protocol";
-const CLAWD_PROTOCOL_SCHEME = "clawd";
+const CLAWD_PROTOCOL_SCHEME = "roary";
 
 function emptyCodexPetSyncSummary(overrides = {}) {
   return {
@@ -317,7 +317,7 @@ function createCodexPetMain(options = {}) {
         return app.setAsDefaultProtocolClient(CLAWD_PROTOCOL_SCHEME, process.execPath, [appRoot]);
       }
     } catch (err) {
-      console.warn("Roary: failed to register clawd:// protocol:", err && err.message);
+      console.warn("Roary: failed to register roary:// protocol:", err && err.message);
     }
     return false;
   }

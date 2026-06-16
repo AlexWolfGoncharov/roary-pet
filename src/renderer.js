@@ -4,7 +4,7 @@
 
 const container = document.getElementById("pet-container");
 const clipLayer = document.getElementById("pet-clip");
-let clawdEl = document.getElementById("clawd");
+let clawdEl = document.getElementById("roary");
 let pendingNext = null;
 const LOW_POWER_IDLE_PAUSE_MS = 5000;
 const SWAP_LOAD_FALLBACK_MS = 3000;
@@ -784,7 +784,7 @@ function swapToFile(file, state, useObjectChannel, options = {}) {
     // Object channel: <object type="image/svg+xml">
     const next = document.createElement("object");
     next.type = "image/svg+xml";
-    next.id = "clawd";
+    next.id = "roary";
     next.style.opacity = "0";
     applyObjectScaleStyle(next, file, state);
 
@@ -849,7 +849,7 @@ function swapToFile(file, state, useObjectChannel, options = {}) {
     // Img channel: <img> for pure playback (all formats)
     const next = document.createElement("img");
     next.className = "clawd-img";
-    next.id = "clawd";
+    next.id = "roary";
     next.style.opacity = "0";
     applyObjectScaleStyle(next, file, state);
     applyMiniFlip(next, state);

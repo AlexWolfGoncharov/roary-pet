@@ -88,7 +88,7 @@ function createRendererHarness() {
   container.id = "pet-container";
   container.isConnected = true;
   const clawd = new FakeElement("object");
-  clawd.id = "clawd";
+  clawd.id = "roary";
   clawd.data = "../assets/svg/current.svg";
   clawd.style.opacity = "0";
   container.appendChild(clawd);
@@ -96,7 +96,7 @@ function createRendererHarness() {
   const document = {
     getElementById(id) {
       if (id === "pet-container") return container;
-      if (id === "clawd") return clawd;
+      if (id === "roary") return clawd;
       return null;
     },
     createElement(tagName) {

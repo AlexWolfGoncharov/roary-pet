@@ -67,7 +67,7 @@
       {
         "name": "Roary Import Protocol",
         "schemes": [
-          "clawd"
+          "roary"
         ]
       }
     ],

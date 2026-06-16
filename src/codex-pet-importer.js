@@ -31,10 +31,10 @@ function parseClawdImportUrl(rawUrl) {
   } catch {
     throw new Error("invalid clawd import URL");
   }
-  if (parsed.protocol !== "clawd:") throw new Error("unsupported protocol");
+  if (parsed.protocol !== "roary:") throw new Error("unsupported protocol");
 
   const action = parsed.hostname || parsed.pathname.replace(/^\/+/, "");
-  if (action !== "import-pet") throw new Error(`unsupported clawd action: ${action || "(missing)"}`);
+  if (action !== "import-pet") throw new Error(`unsupported roary action: ${action || "(missing)"}`);
 
   const remote = parsed.searchParams.get("url");
   if (!remote) throw new Error("import-pet URL requires a url parameter");

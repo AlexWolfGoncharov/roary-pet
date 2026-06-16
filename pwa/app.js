@@ -493,7 +493,7 @@
       }
       var history = this.connection.getHistory();
       if (history.length > 0) { this.connection.connect(history[0]); return; }
-      // M1: no auto-connect without token. User must open via clawd:// URL (from Settings page)
+      // M1: no auto-connect without token. User must open via roary:// URL (from Settings page)
       // or manually enter host/port/token in the connection history.
     }
 
