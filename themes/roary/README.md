@@ -4,9 +4,12 @@ Roarbank lion mascot theme for clawd-on-desk. Built from Lottie animations
 (`Roary_lottie/`) converted to APNG + static SVG poses.
 
 ## Sounds
-- `sounds/roary-roar.mp3` → `complete` (plays when Roary finishes a task) — lion roar
-  from Mixkit (Mixkit Free Sound Effects License: free commercial use, no attribution).
-- `sounds/roary-confirm.mp3` → `confirm` (permission / confirmation) — Fintech Farm sound.
+theme.json `sounds` maps to filenames. NOTE: Roary is a **built-in** theme, and the
+runtime resolves built-in theme sounds from `assets/sounds/` (NOT `themes/roary/sounds/`
+— see theme-context.js getSoundUrl). So the files live in the repo's `assets/sounds/`:
+- `assets/sounds/roary-roar.mp3` → `complete` (plays when Roary finishes a task) — lion
+  roar from Mixkit (Mixkit Free Sound Effects License: free commercial, no attribution).
+- `assets/sounds/roary-confirm.mp3` → `confirm` (permission / confirmation) — Fintech Farm sound.
 
 ## Run
 ```bash
