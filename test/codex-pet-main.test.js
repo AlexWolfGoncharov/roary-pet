@@ -252,10 +252,10 @@ test("Codex Pet import URLs queued before app ready do not flush until explicitl
   }
 });
 
-test("Codex Pet import dialog uses zh-TW strings", async () => {
+test("Codex Pet import dialog uses ru strings", async () => {
   const { runtime, showMessageBoxCalls } = createQueueRuntime({
     runtimeOptions: {
-      getLang: () => "zh-TW",
+      getLang: () => "ru",
     },
   });
 
@@ -263,12 +263,12 @@ test("Codex Pet import dialog uses zh-TW strings", async () => {
   await runtime.flushPendingImportUrls();
 
   assert.strictEqual(showMessageBoxCalls.length, 1);
-  assert.deepStrictEqual(showMessageBoxCalls[0].options.buttons, ["匯入", "取消"]);
-  assert.strictEqual(showMessageBoxCalls[0].options.message, "從 example.test 匯入 Codex Pet？");
-  assert.match(showMessageBoxCalls[0].options.detail, /下載、驗證並安裝/);
+  assert.deepStrictEqual(showMessageBoxCalls[0].options.buttons, ["Импортировать", "Отмена"]);
+  assert.strictEqual(showMessageBoxCalls[0].options.message, "Импортировать Codex Pet с example.test?");
+  assert.match(showMessageBoxCalls[0].options.detail, /скачает, проверит и установит/);
 });
 
-test("Codex Pet removal confirmation uses zh-TW strings", async (t) => {
+test("Codex Pet removal confirmation uses ru strings", async (t) => {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), "clawd-codex-pet-main-"));
   t.after(() => fs.rmSync(root, { recursive: true, force: true }));
 
@@ -309,15 +309,15 @@ test("Codex Pet removal confirmation uses zh-TW strings", async (t) => {
     codexPetImporter: {
       getDefaultCodexPetsDir: () => petsRoot,
     },
-    getLang: () => "zh-TW",
+    getLang: () => "ru",
   });
 
   assert.deepStrictEqual(await runtime.removeCodexPet("codex-pet-one"), { status: "cancel" });
 
   assert.strictEqual(showMessageBoxCalls.length, 1);
-  assert.deepStrictEqual(showMessageBoxCalls[0].options.buttons, ["解除安裝", "取消"]);
-  assert.strictEqual(showMessageBoxCalls[0].options.message, "解除安裝匯入的寵物「小貓」？");
-  assert.match(showMessageBoxCalls[0].options.detail, /無法復原/);
+  assert.deepStrictEqual(showMessageBoxCalls[0].options.buttons, ["Удалить", "Отмена"]);
+  assert.strictEqual(showMessageBoxCalls[0].options.message, 'Удалить импортированного питомца "小貓"?');
+  assert.match(showMessageBoxCalls[0].options.detail, /нельзя отменить/);
 });
 
 test("Codex Pet import queue ignores overlapping flush calls while the first drain is active", async () => {

@@ -311,7 +311,7 @@ describe("prefs.validate", () => {
 
   it("keeps valid fields verbatim", () => {
     const v = prefs.validate({
-      lang: "ko",
+      lang: "uk",
       soundMuted: true,
       soundVolume: 0.4,
       lowPowerIdleMode: true,
@@ -332,7 +332,7 @@ describe("prefs.validate", () => {
       miniEdge: "left",
       theme: "calico",
     });
-    assert.strictEqual(v.lang, "ko");
+    assert.strictEqual(v.lang, "uk");
     assert.strictEqual(v.soundMuted, true);
     assert.strictEqual(v.soundVolume, 0.4);
     assert.strictEqual(v.lowPowerIdleMode, true);
@@ -954,12 +954,12 @@ describe("prefs.migrate v7 → v8 (Telegram bare completion default)", () => {
   it("migrates older prefs without Telegram approval settings safely", () => {
     const upgraded = prefs.migrate({
       version: 6,
-      lang: "zh",
+      lang: "ru",
     });
     const validated = prefs.validate(upgraded);
 
     assert.strictEqual(validated.version, prefs.CURRENT_VERSION);
-    assert.strictEqual(validated.lang, "zh");
+    assert.strictEqual(validated.lang, "ru");
     assert.strictEqual(validated.tgApproval.notifyOnComplete, false);
     assert.strictEqual(validated.tgApproval.completionOutputMode, "off");
   });
@@ -1113,10 +1113,10 @@ describe("prefs ephemeral fields (auto-pilot does not persist)", () => {
 
   it("save() strips autoApproveAllPermissions from the on-disk file", () => {
     const p = makeTempPath();
-    prefs.save(p, { ...prefs.getDefaults(), autoApproveAllPermissions: true, lang: "zh" });
+    prefs.save(p, { ...prefs.getDefaults(), autoApproveAllPermissions: true, lang: "ru" });
     const onDisk = JSON.parse(fs.readFileSync(p, "utf8"));
     assert.strictEqual("autoApproveAllPermissions" in onDisk, false, "ephemeral key must not be written");
-    assert.strictEqual(onDisk.lang, "zh", "non-ephemeral fields still persist");
+    assert.strictEqual(onDisk.lang, "ru", "non-ephemeral fields still persist");
   });
 
   it("survives a quit/relaunch as OFF even after being enabled mid-session", () => {
@@ -1163,13 +1163,13 @@ describe("prefs.load", () => {
     const p = makeTempPath();
     fs.writeFileSync(
       p,
-      JSON.stringify({ lang: "zh", x: 100, y: 200, size: "P:12" }),
+      JSON.stringify({ lang: "ru", x: 100, y: 200, size: "P:12" }),
       "utf8"
     );
     const { snapshot, locked } = prefs.load(p);
     assert.strictEqual(locked, false);
     assert.strictEqual(snapshot.version, prefs.CURRENT_VERSION);
-    assert.strictEqual(snapshot.lang, "zh");
+    assert.strictEqual(snapshot.lang, "ru");
     assert.strictEqual(snapshot.x, 100);
     assert.strictEqual(snapshot.y, 200);
     assert.strictEqual(snapshot.size, "P:12");
@@ -1182,7 +1182,7 @@ describe("prefs.load", () => {
     const p = makeTempPath();
     fs.writeFileSync(
       p,
-      JSON.stringify({ version: 2, lang: "zh" }),
+      JSON.stringify({ version: 2, lang: "ru" }),
       "utf8"
     );
     const originalWarn = console.warn;
@@ -1192,7 +1192,7 @@ describe("prefs.load", () => {
       const { snapshot, locked } = prefs.load(p);
       assert.strictEqual(locked, false);
       assert.strictEqual(snapshot.version, prefs.CURRENT_VERSION);
-      assert.strictEqual(snapshot.lang, "zh");
+      assert.strictEqual(snapshot.lang, "ru");
       assert.strictEqual(warned, false);
     } finally {
       console.warn = originalWarn;
@@ -1224,12 +1224,12 @@ describe("prefs.save", () => {
   it("writes a valid snapshot that round-trips through load", () => {
     const p = makeTempPath();
     const snap = prefs.getDefaults();
-    snap.lang = "zh";
+    snap.lang = "ru";
     snap.bubbleFollowPet = true;
     snap.x = 42;
     prefs.save(p, snap);
     const { snapshot } = prefs.load(p);
-    assert.strictEqual(snapshot.lang, "zh");
+    assert.strictEqual(snapshot.lang, "ru");
     assert.strictEqual(snapshot.bubbleFollowPet, true);
     assert.strictEqual(snapshot.x, 42);
     assert.strictEqual(snapshot.version, prefs.CURRENT_VERSION);

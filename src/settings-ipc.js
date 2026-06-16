@@ -8,10 +8,8 @@ const settingsThemeImporter = require("./settings-theme-importer");
 const SOUND_OVERRIDE_ASSET_EXTS = new Set([".mp3", ".wav", ".ogg", ".m4a", ".aac", ".flac"]);
 const SOUND_OVERRIDE_DIALOG_STRINGS = {
   en: { title: "Choose a sound file", filterName: "Audio" },
-  zh: { title: "选择音效文件", filterName: "音频" },
-  "zh-TW": { title: "選擇音效檔案", filterName: "音效" },
-  ko: { title: "음향 파일 선택", filterName: "오디오" },
-  ja: { title: "音声ファイルを選択", filterName: "音声" },
+  ru: { title: "Выберите звуковой файл", filterName: "Аудио" },
+  uk: { title: "Виберіть звуковий файл", filterName: "Аудіо" },
 };
 
 const REMOVE_THEME_DIALOG_STRINGS = {
@@ -21,29 +19,17 @@ const REMOVE_THEME_DIALOG_STRINGS = {
     message: (name) => `Delete theme "${name}"?`,
     detail: "This cannot be undone. All files for this theme will be removed from disk.",
   },
-  zh: {
-    delete: "删除",
-    cancel: "取消",
-    message: (name) => `确认删除主题 "${name}"？`,
-    detail: "此操作不可撤销。主题的所有文件将从磁盘移除。",
+  ru: {
+    delete: "Удалить",
+    cancel: "Отмена",
+    message: (name) => `Удалить тему "${name}"?`,
+    detail: "Это действие необратимо. Все файлы этой темы будут удалены с диска.",
   },
-  "zh-TW": {
-    delete: "刪除",
-    cancel: "取消",
-    message: (name) => `確定要刪除主題「${name}」？`,
-    detail: "此動作無法復原。此主題的所有檔案都會從磁碟移除。",
-  },
-  ko: {
-    delete: "삭제",
-    cancel: "취소",
-    message: (name) => `테마 "${name}"을(를) 삭제할까요?`,
-    detail: "이 작업은 되돌릴 수 없습니다. 이 테마의 모든 파일이 디스크에서 제거됩니다.",
-  },
-  ja: {
-    delete: "削除",
-    cancel: "キャンセル",
-    message: (name) => `テーマ "${name}" を削除しますか？`,
-    detail: "この操作は元に戻せません。このテーマのすべてのファイルがディスクから削除されます。",
+  uk: {
+    delete: "Видалити",
+    cancel: "Скасувати",
+    message: (name) => `Видалити тему "${name}"?`,
+    detail: "Цю дію не можна скасувати. Усі файли цієї теми буде видалено з диска.",
   },
 };
 

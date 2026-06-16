@@ -6,14 +6,8 @@ const path = require("node:path");
 const test = require("node:test");
 
 const ROOT = path.join(__dirname, "..");
-const TABLE_READMES = ["README.md", "README.ko-KR.md", "README.ja-JP.md"];
-const ALL_READMES = [
-  "README.md",
-  "README.zh-CN.md",
-  "README.zh-TW.md",
-  "README.ko-KR.md",
-  "README.ja-JP.md",
-];
+const TABLE_READMES = ["README.md"];
+const ALL_READMES = ["README.md"];
 const VERIFIED_GITHUB_CONTRIBUTORS = [
   "Bynlk",
   "zxypro1",

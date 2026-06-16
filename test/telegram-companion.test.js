@@ -230,20 +230,20 @@ test("interrupted badge uses the warning marker", async () => {
 });
 
 test("completion notification follows the current Clawd language", async () => {
-  let lang = "zh";
+  let lang = "ru";
   const { comp, sent } = makeCompanion({ getLang: () => lang, getNotifyOnComplete: () => true });
   comp.onSnapshot({ sessions: [] });
   comp.onSnapshot({ sessions: [doneEntry()] });
   await tick();
   assert.equal(sent.length, 1);
-  assert.match(sent[0], /已完成/);
+  assert.match(sent[0], /завершено/);
   assert.doesNotMatch(sent[0], /\(done\)/);
 
-  lang = "ja";
+  lang = "uk";
   comp.onSnapshot({ sessions: [doneEntry({ lastEvent: { rawEvent: "Stop", at: 2000 } })] });
   await tick();
   assert.equal(sent.length, 2);
-  assert.match(sent[1], /完了/);
+  assert.match(sent[1], /завершено/);
 });
 
 test("output mode off keeps the R1a bare notification", async () => {

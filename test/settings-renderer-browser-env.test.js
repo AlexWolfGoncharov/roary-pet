@@ -421,18 +421,24 @@ function loadGeneralLanguageRowForTest({
           rowLanguage: "Language",
           rowLanguageDesc: "Language desc",
           langEnglish: "English",
-          langChinese: "Chinese",
-          langKorean: "Korean",
-          langJapanese: "Japanese",
+          langRussian: "Русский",
+          langUkrainian: "Українська",
           toastSaveFailed: "Failed: ",
         },
-        zh: {
+        ru: {
           rowLanguage: "Language",
           rowLanguageDesc: "Language desc",
           langEnglish: "English",
-          langChinese: "Chinese",
-          langKorean: "Korean",
-          langJapanese: "Japanese",
+          langRussian: "Русский",
+          langUkrainian: "Українська",
+          toastSaveFailed: "Failed: ",
+        },
+        uk: {
+          rowLanguage: "Language",
+          rowLanguageDesc: "Language desc",
+          langEnglish: "English",
+          langRussian: "Русский",
+          langUkrainian: "Українська",
           toastSaveFailed: "Failed: ",
         },
       },
@@ -2324,13 +2330,11 @@ describe("settings renderer browser environment", () => {
     assert.ok(i18nSource.includes("doctorConnectionHttpVerified"));
     assert.ok(i18nSource.includes("doctorOpenLog"));
     assert.ok(i18nSource.includes('doctorOpenLogOpened: "Debug log opened"'));
-    assert.ok(i18nSource.includes('doctorOpenLogOpened: "已打开调试日志"'));
-    assert.ok(i18nSource.includes('doctorOpenLogOpened: "디버그 로그를 열었습니다"'));
-    assert.ok(i18nSource.includes('doctorOpenLogOpened: "デバッグログを開きました"'));
+    assert.ok(i18nSource.includes('doctorOpenLogOpened: "Журнал отладки открыт"'));
+    assert.ok(i18nSource.includes('doctorOpenLogOpened: "Журнал налагодження відкрито"'));
     assert.ok(!i18nSource.includes('doctorOpenLogOpened: "Debug log opened."'));
-    assert.ok(!i18nSource.includes('doctorOpenLogOpened: "已打开调试日志。"'));
-    assert.ok(!i18nSource.includes('doctorOpenLogOpened: "디버그 로그를 열었습니다."'));
-    assert.ok(!i18nSource.includes('doctorOpenLogOpened: "デバッグログを開きました。"'));
+    assert.ok(!i18nSource.includes('doctorOpenLogOpened: "Журнал отладки открыт."'));
+    assert.ok(!i18nSource.includes('doctorOpenLogOpened: "Журнал налагодження відкрито."'));
   });
 
   it("unifies the size slider on the simple volume-style control (no floating bubble, no ticks)", () => {
@@ -2546,19 +2550,19 @@ describe("settings renderer browser environment", () => {
 
     assert.deepStrictEqual(
       harness.updateCalls,
-      [{ key: "lang", value: "zh" }],
+      [{ key: "lang", value: "ru" }],
       "clicking a language option should call settingsAPI.update with the new lang"
     );
     assert.strictEqual(picker.classList.contains("open"), false);
     assert.strictEqual(harness.getLangMenu().attributes["aria-hidden"], "true");
     for (const option of options) assert.strictEqual(option.tabIndex, -1);
-    assert.strictEqual(harness.getLangValue().textContent, "Chinese");
+    assert.strictEqual(harness.getLangValue().textContent, "Русский");
 
     trigger.dispatchEvent({ type: "click" });
     options[1].dispatchEvent({ type: "click" });
     assert.deepStrictEqual(
       harness.updateCalls,
-      [{ key: "lang", value: "zh" }],
+      [{ key: "lang", value: "ru" }],
       "clicking the already displayed pending language should not submit a duplicate update"
     );
 
@@ -2566,18 +2570,18 @@ describe("settings renderer browser environment", () => {
     options[0].dispatchEvent({ type: "click" });
     assert.deepStrictEqual(
       harness.updateCalls,
-      [{ key: "lang", value: "zh" }],
+      [{ key: "lang", value: "ru" }],
       "clicking back to the committed language while pending should not submit a duplicate update"
     );
     assert.strictEqual(harness.getLangValue().textContent, "English");
     assert.strictEqual(options[0].attributes["aria-selected"], "true");
 
     harness.core.ops.applyChanges({
-      changes: { lang: "zh" },
-      snapshot: { lang: "zh" },
+      changes: { lang: "ru" },
+      snapshot: { lang: "ru" },
     });
     assert.strictEqual(harness.getContentRenderCount(), 2);
-    assert.strictEqual(harness.getLangValue().textContent, "Chinese");
+    assert.strictEqual(harness.getLangValue().textContent, "Русский");
     assert.strictEqual(harness.getLangOptions()[1].attributes["aria-selected"], "true");
   });
 
@@ -2595,7 +2599,7 @@ describe("settings renderer browser environment", () => {
     options[1].dispatchEvent(createKeyboardEventForTest("Enter"));
     await Promise.resolve();
 
-    assert.deepStrictEqual(harness.updateCalls, [{ key: "lang", value: "zh" }]);
+    assert.deepStrictEqual(harness.updateCalls, [{ key: "lang", value: "ru" }]);
     assert.strictEqual(harness.getLangValue().textContent, "English");
     assert.strictEqual(harness.getToastText(), "Failed: synthetic failure");
   });
@@ -2680,7 +2684,7 @@ describe("settings renderer browser environment", () => {
     // The command is registered in settings-actions.
     assert.ok(actionsSource.includes('"sessionCleanup.setTriple": setSessionCleanupTriple'));
 
-    // i18n keys present in all five languages.
+    // i18n keys present in all three languages.
     for (const key of [
       "rowSessionCleanupGroup",
       "rowSessionCleanupGroupDesc",
@@ -2696,7 +2700,7 @@ describe("settings renderer browser environment", () => {
       "actionResetSessionCleanup",
     ]) {
       const matches = i18nSource.match(new RegExp(`\\b${key}:`, "g"));
-      assert.ok(matches && matches.length >= 5, `${key} should appear in all 5 language tables (saw ${matches ? matches.length : 0})`);
+      assert.ok(matches && matches.length >= 3, `${key} should appear in all 3 language tables (saw ${matches ? matches.length : 0})`);
     }
   });
 
@@ -2972,10 +2976,10 @@ describe("settings renderer browser environment", () => {
 
     assert.ok(i18nSource.includes("auto-close upper bound"));
     assert.ok(i18nSource.includes("later session states may dismiss it earlier"));
-    assert.ok(i18nSource.includes("自动关闭上限"));
-    assert.ok(i18nSource.includes("后续状态可能提前关闭"));
-    assert.ok(i18nSource.includes("자동 종료 상한"));
-    assert.ok(i18nSource.includes("후속 상태가 더 일찍 닫을 수 있습니다"));
+    assert.ok(i18nSource.includes("верхнюю границу автозакрытия"));
+    assert.ok(i18nSource.includes("могут закрыть его раньше"));
+    assert.ok(i18nSource.includes("верхню межу автозакриття"));
+    assert.ok(i18nSource.includes("можуть закрити його раніше"));
   });
 
   it("auto-commits bubble seconds shortly after valid input instead of waiting only for change", () => {
@@ -3007,7 +3011,8 @@ describe("settings renderer browser environment", () => {
     assert.ok(!mainSource.includes("UPDATE_BUBBLE_DIALOG_STRINGS"));
     assert.ok(!mainSource.includes('ipcMain.handle("settings:confirm-disable-update-bubbles"'));
     assert.ok(i18nSource.includes("Hide update bubbles"));
-    assert.ok(i18nSource.includes("隐藏更新气泡"));
+    assert.ok(i18nSource.includes("Скрыть окна обновлений"));
+    assert.ok(i18nSource.includes("Приховати вікна оновлень"));
     assert.ok(generalSource.includes('{ id: "confirm", label: t("updateBubbleDisableConfirmAction"), tone: "danger" }'));
     assert.ok(generalSource.includes('{ id: "cancel", label: t("updateBubbleDisableConfirmCancel"), tone: "accent", defaultFocus: true }'));
     assert.ok(generalSource.includes('if (actionId === "confirm") runToggleCommit(nextEnabled);'));
@@ -3057,7 +3062,8 @@ describe("settings renderer browser environment", () => {
     assert.ok(css.includes(".row-label.row-label-danger"));
     // Simple title + localized confirm strings exist.
     assert.ok(i18nSource.includes('rowAutoApproveAll: "Auto-pilot"'));
-    assert.ok(i18nSource.includes('rowAutoApproveAll: "自动驾驶"'));
+    assert.ok(i18nSource.includes('rowAutoApproveAll: "Автопилот"'));
+    assert.ok(i18nSource.includes('rowAutoApproveAll: "Автопілот"'));
     assert.ok(i18nSource.includes("autoApproveAllConfirmTitle"));
     // Lives in its own Permissions section, not under Bubbles.
     assert.ok(generalSource.includes('t("sectionPermissions")'));
@@ -3657,8 +3663,8 @@ describe("settings renderer browser environment", () => {
     const master = harness.getSwitch("sessionHudEnabled");
     const beforeRenderCount = harness.getContentRenderCount();
     harness.core.ops.applyChanges({
-      changes: { sessionHudEnabled: true, lang: "zh" },
-      snapshot: { ...initialSnapshot, sessionHudEnabled: true, lang: "zh" },
+      changes: { sessionHudEnabled: true, lang: "ru" },
+      snapshot: { ...initialSnapshot, sessionHudEnabled: true, lang: "ru" },
     });
 
     assert.strictEqual(harness.getContentRenderCount(), beforeRenderCount + 1);
@@ -3820,11 +3826,16 @@ describe("settings renderer browser environment", () => {
     assert.ok(strings.en.themeImportUserThemeZipHint.includes("theme.json"));
     assert.strictEqual(strings.en.themeOpenUserThemesFolder, "Open themes folder");
     assert.strictEqual(strings.en.themeRefreshThemes, "Refresh themes");
-    assert.strictEqual(strings.zh.themeImportPetZip, "导入 Codex Pet 包（.zip）");
-    assert.strictEqual(strings.zh.themeActionGroupCodexPets, "Codex Pets");
-    assert.strictEqual(strings.zh.themeImportUserThemeZip, "导入 Clawd 主题包（.zip）");
-    assert.ok(strings.zh.themeImportUserThemeZipHint.includes("theme.json"));
-    assert.strictEqual(strings.zh.themeOpenUserThemesFolder, "打开主题文件夹");
+    assert.strictEqual(strings.ru.themeImportPetZip, "Импортировать пакет Codex Pet (.zip)");
+    assert.strictEqual(strings.ru.themeActionGroupCodexPets, "Codex Pets");
+    assert.strictEqual(strings.ru.themeImportUserThemeZip, "Импортировать пакет темы Clawd (.zip)");
+    assert.ok(strings.ru.themeImportUserThemeZipHint.includes("theme.json"));
+    assert.strictEqual(strings.ru.themeOpenUserThemesFolder, "Открыть папку тем");
+    assert.strictEqual(strings.uk.themeImportPetZip, "Імпортувати пакет Codex Pet (.zip)");
+    assert.strictEqual(strings.uk.themeActionGroupCodexPets, "Codex Pets");
+    assert.strictEqual(strings.uk.themeImportUserThemeZip, "Імпортувати пакет теми Clawd (.zip)");
+    assert.ok(strings.uk.themeImportUserThemeZipHint.includes("theme.json"));
+    assert.strictEqual(strings.uk.themeOpenUserThemesFolder, "Відкрити папку тем");
   });
 
   it("keeps Theme card footers reserved without leaking button keyboard events to card activation", async () => {
@@ -5464,21 +5475,17 @@ describe("settings renderer browser environment", () => {
 
     const strings = loadSettingsI18nForTest();
     assert.strictEqual(strings.en.animOverridesReplacementConfig, "Animation override settings");
-    assert.strictEqual(strings.zh.animOverridesReplacementConfig, "动画覆盖设置");
-    assert.strictEqual(strings.ko.animOverridesReplacementConfig, "애니메이션 덮어쓰기 설정");
-    assert.strictEqual(strings.ja.animOverridesReplacementConfig, "アニメーション上書き設定");
+    assert.strictEqual(strings.ru.animOverridesReplacementConfig, "Настройки переопределения анимаций");
+    assert.strictEqual(strings.uk.animOverridesReplacementConfig, "Налаштування перевизначення анімацій");
     assert.strictEqual(strings.en.animOverridesImport, "Import config…");
-    assert.strictEqual(strings.zh.animOverridesImport, "导入配置…");
-    assert.strictEqual(strings.ko.animOverridesImport, "설정 가져오기…");
-    assert.strictEqual(strings.ja.animOverridesImport, "設定をインポート…");
+    assert.strictEqual(strings.ru.animOverridesImport, "Импорт конфигурации…");
+    assert.strictEqual(strings.uk.animOverridesImport, "Імпорт конфігурації…");
     assert.strictEqual(strings.en.animOverridesExport, "Export config…");
-    assert.strictEqual(strings.zh.animOverridesExport, "导出配置…");
-    assert.strictEqual(strings.ko.animOverridesExport, "설정 내보내기…");
-    assert.strictEqual(strings.ja.animOverridesExport, "設定をエクスポート…");
+    assert.strictEqual(strings.ru.animOverridesExport, "Экспорт конфигурации…");
+    assert.strictEqual(strings.uk.animOverridesExport, "Експорт конфігурації…");
     assert.strictEqual(strings.en.animOverridesResetAll, "Restore theme defaults");
-    assert.strictEqual(strings.zh.animOverridesResetAll, "恢复主题默认");
-    assert.strictEqual(strings.ko.animOverridesResetAll, "테마 기본값으로 복원");
-    assert.strictEqual(strings.ja.animOverridesResetAll, "テーマのデフォルトに戻す");
+    assert.strictEqual(strings.ru.animOverridesResetAll, "Восстановить значения темы по умолчанию");
+    assert.strictEqual(strings.uk.animOverridesResetAll, "Відновити значення теми за замовчуванням");
     assert.match(
       css,
       /@media \(max-width:\s*640px\)\s*\{[\s\S]*\.anim-override-meta\s*\{[\s\S]*grid-template-columns:\s*minmax\(0,\s*1fr\);/
@@ -5512,12 +5519,10 @@ describe("settings renderer browser environment", () => {
     const strings = loadSettingsI18nForTest();
     assert.strictEqual(strings.en.animOverridesFadeIn, "Fade in on enter");
     assert.strictEqual(strings.en.animOverridesFadeOut, "Fade out on exit");
-    assert.strictEqual(strings.zh.animOverridesFadeIn, "进入时淡入");
-    assert.strictEqual(strings.zh.animOverridesFadeOut, "退出时淡出");
-    assert.strictEqual(strings.ko.animOverridesFadeIn, "진입 시 페이드 인");
-    assert.strictEqual(strings.ko.animOverridesFadeOut, "종료 시 페이드 아웃");
-    assert.strictEqual(strings.ja.animOverridesFadeIn, "開始時フェードイン");
-    assert.strictEqual(strings.ja.animOverridesFadeOut, "終了時フェードアウト");
+    assert.strictEqual(strings.ru.animOverridesFadeIn, "Появление при входе");
+    assert.strictEqual(strings.ru.animOverridesFadeOut, "Исчезновение при выходе");
+    assert.strictEqual(strings.uk.animOverridesFadeIn, "Поява при вході");
+    assert.strictEqual(strings.uk.animOverridesFadeOut, "Зникнення при виході");
 
     const css = fs.readFileSync(SETTINGS_CSS, "utf8");
     assert.match(

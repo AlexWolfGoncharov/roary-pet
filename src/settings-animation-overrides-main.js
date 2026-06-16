@@ -32,33 +32,19 @@ const ANIMATION_OVERRIDES_EXPORT_DIALOG_STRINGS = {
     jsonFilter: "Clawd Animation Overrides",
     nothingToExport: "No animation overrides to export. Override something first.",
   },
-  zh: {
-    saveTitle: "导出动画覆盖",
-    openTitle: "导入动画覆盖",
+  ru: {
+    saveTitle: "Экспорт переопределений анимаций",
+    openTitle: "Импорт переопределений анимаций",
     defaultName: (ts) => `clawd-animation-overrides-${ts}.json`,
-    jsonFilter: "Clawd 动画覆盖",
-    nothingToExport: "没有可导出的动画覆盖。先自定义几个动画试试。",
+    jsonFilter: "Переопределения анимаций Clawd",
+    nothingToExport: "Нет переопределений анимаций для экспорта. Сначала переопределите что-нибудь.",
   },
-  "zh-TW": {
-    saveTitle: "匯出動畫與音效自訂設定",
-    openTitle: "匯入動畫與音效自訂設定",
+  uk: {
+    saveTitle: "Експорт перевизначень анімацій",
+    openTitle: "Імпорт перевизначень анімацій",
     defaultName: (ts) => `clawd-animation-overrides-${ts}.json`,
-    jsonFilter: "Clawd 動畫與音效自訂設定",
-    nothingToExport: "目前沒有可匯出的自訂設定。",
-  },
-  ko: {
-    saveTitle: "애니메이션 덮어쓰기 내보내기",
-    openTitle: "애니메이션 덮어쓰기 가져오기",
-    defaultName: (ts) => `clawd-animation-overrides-${ts}.json`,
-    jsonFilter: "Clawd 애니메이션 덮어쓰기",
-    nothingToExport: "내보낼 애니메이션 덮어쓰기가 없습니다. 먼저 무언가를 덮어써 보세요.",
-  },
-  ja: {
-    saveTitle: "アニメーション差し替えをエクスポート",
-    openTitle: "アニメーション差し替えをインポート",
-    defaultName: (ts) => `clawd-animation-overrides-${ts}.json`,
-    jsonFilter: "Clawd アニメーション差し替え",
-    nothingToExport: "エクスポートするアニメーション差し替えがありません。先に何かを差し替えてください。",
+    jsonFilter: "Перевизначення анімацій Clawd",
+    nothingToExport: "Немає перевизначень анімацій для експорту. Спочатку перевизначте щось.",
   },
 };
 
