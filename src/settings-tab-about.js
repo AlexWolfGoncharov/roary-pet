@@ -332,9 +332,8 @@
         ));
       }
 
-      infoSection.appendChild(maintainersRow);
-      infoSection.appendChild(contribRow);
-      infoSection.appendChild(contribList);
+      // Roary Pet fork: upstream Maintainers/Contributors lists removed from About.
+      // Upstream credit is kept in the License line (fork of clawd-on-desk © Ruller_Lulu).
     });
   }
 
