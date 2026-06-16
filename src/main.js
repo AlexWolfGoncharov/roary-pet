@@ -1,4 +1,8 @@
 const { app, BrowserWindow, screen, ipcMain, globalShortcut, nativeTheme, dialog, shell, nativeImage, powerSaveBlocker, clipboard } = require("electron");
+// Roary Pet fork: set the app name explicitly so dev runs (npm start) show
+// "Roary Pet" in the dock/menu instead of Electron's default "Electron".
+// (In packaged builds build.productName already handles this.)
+app.setName("Roary Pet");
 // ── Linux/Wayland: relaunch under XWayland so the pet is draggable (issue #441) ──
 // Native Wayland ignores client-side window positioning and blocks global cursor
 // queries, so the pet spawns centered, can't be dragged, and has no tracking;
